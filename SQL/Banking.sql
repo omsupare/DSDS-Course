@@ -65,3 +65,58 @@ CREATE TABLE Loans (
     EndDate DATE
 );
 
+ALTER TABLE Customers
+ADD DateOfBirth DATE;
+
+ALTER TABLE Customers
+MODIFY Phone VARCHAR(20);
+
+DESCRIBE Customers;
+
+ALTER TABLE Accounts
+ADD CONSTRAINT chk_MinBalance
+CHECK (BALANCE >= 1000);
+
+DESCRIBE Accounts;
+
+DROP TABLE Accountbranches;
+
+ALTER TABLE Accounts
+ADD CustomerID INT;
+
+ALTER TABLE Accounts
+ADD CONSTRAINT FK_Accounts_Customers
+FOREIGN KEY (CustomerID)
+REFERENCES Customers(CustomerID);
+
+ALTER TABLE Accounts
+ADD CONSTRAINT PK_AccountID PRIMARY KEY(AccountID);
+
+Desc Accounts;
+
+ALTER TABLE customers
+MODIFY FirstName VARCHAR(50) NOT NULL;
+
+DESC customers;
+
+ALTER TABLE Customers
+ADD CONSTRAINT uq_Email UNIQUE(Email);
+
+ALTER TABLE Branches
+MODIFY BranchID VARCHAR(100) PRIMARY KEY;
+
+ALTER TABLE Accounts
+ADD BranchID VARCHAR(100);
+
+ALTER TABLE Accounts DROP COLUMN BranchID;
+
+ALTER TABLE Accounts
+ADD CONSTRAINT FK_BranchID
+FOREIGN KEY (BranchID)
+REFERENCES Branches(BranchID);
+
+
+
+DESC Branches;
+DESC accounts;
+
