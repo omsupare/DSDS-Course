@@ -115,8 +115,54 @@ ADD CONSTRAINT FK_BranchID
 FOREIGN KEY (BranchID)
 REFERENCES Branches(BranchID);
 
-
-
 DESC Branches;
 DESC accounts;
+DESC Transactions;
 
+ALTER TABLE Transactions
+MODIFY TransactionID INT PRIMARY KEY;
+
+-- OR
+
+-- ALTER TABLE Transactions
+-- ADD CONSTRAINT PK_Transactions
+-- PRIMARY KEY (TransactionID);
+
+ALTER TABLE transactions
+ADD AccountID INT;
+
+ALTER TABLE Transactions
+ADD CONSTRAINT FK_AccountID
+FOREIGN KEY (AccountID)
+REFERENCES Accounts(AccountID);
+
+-- HOW TO CHECK IF WHAT IS THE CONSTRAINT NAME AND ITS TYPE
+SELECT
+	CONSTRAINT_NAME,
+    CONSTRAINT_TYPE
+FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+WHERE TABLE_SCHEMA = 'bankingdb'
+AND TABLE_NAME = 'Accounts';
+
+DESC Loans;
+
+ALTER TABLE loans
+ADD CONSTRAINT PK_LoanID
+PRIMARY KEY (LoanID);
+
+ALTER TABLE Loans
+ADD customerID INT;
+
+ALTER TABLE Accounts DROP FOREIGN KEY FK_CustomerID;
+
+ALTER TABLE Accounts
+DROP COLUMN CustomerID;
+
+ALTER TABLE Loans
+ADD CONSTRAINT FK_CustomerID
+FOREIGN KEY (CustomerID)
+REFERENCES Customers(CustomerID);
+
+-- Normalization and Denormalization important for interviews :
+-- Normalization process of removing duplicate
+-- divide large table into smaller table
