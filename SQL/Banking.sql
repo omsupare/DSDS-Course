@@ -166,3 +166,34 @@ REFERENCES Customers(CustomerID);
 -- Normalization and Denormalization important for interviews :
 -- Normalization process of removing duplicate
 -- divide large table into smaller table
+
+INSERT INTO Customers 
+(CustomerID, FirstName, LastName, Email, Phone, DateOfBirth)
+VALUES
+(101,'Rahul','sharma','rahul@gmail.com','9876543210','1998-04-15');
+
+INSERT INTO Customers
+VALUES
+(102,'Ketan','Tiwari','ketan@gmail.com','8838938284','2026-08-04','2000-06-22');
+
+
+SELECT * FROM Customers;
+
+INSERT INTO Accounts
+(AccountID, CustomerID, AccountType, Balance)
+VALUES
+(201,101,'Savings',25000);
+
+SELECT * FROM Accounts;
+
+INSERT INTO Customers 
+(CustomerID, FirstName, LastName, Email, Phone, AccountCreationDate, DateOfBirth)
+VALUES
+(103,'Neha','Singh','neha@gmail.com','9277476727','2026-08-03','1992-07-03'),
+(104,'Mukul','Jha','mukul@gmail.com','7929267534','2025-02-01','1995-11-06');
+
+UPDATE customers 
+SET 
+    AccountCreationDate = '2025-06-29'
+WHERE
+    CustomerID = '101';   -- without this condition sab me update hojata
