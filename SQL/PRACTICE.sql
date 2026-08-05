@@ -104,3 +104,87 @@ CREATE TABLE CITY1 (
     AGE INT
     CONSTRAINT AGE_CHECK1 CHECK (AGE >= 18 AND CITY ="DELHI")
 );
+
+USE college2;
+
+DROP TABLE student2;
+
+CREATE TABLE student2 (
+	rollno INT PRIMARY KEY,
+    name VARCHAR(50),
+    marks INT NOT NULL,
+    grade VARCHAR(1),
+    city VARCHAR(20)
+);
+
+INSERT INTO student2
+(rollno, name, marks, grade, city)
+VALUES
+(1,'Anil',78,'C','Pune'),
+(2,'Bhumika',93,'A','Mumbai'),
+(3,'Chetan',85,'B','Mumbai'),
+(4,'Dhruv',96,'A','Delhi'),
+(5,'Emanuel',12,'F','Delhi'),
+(6,'Farah',82,'B','Delhi');
+
+SELECT DISTINCT city FROM student2;
+
+SELECT * 
+FROM student2
+WHERE city = 'Mumbai';
+
+SELECT * 
+FROM student2
+WHERE marks > 80 AND city = 'Mumbai';
+
+SELECT *
+FROM student2
+WHERE marks+10 > 100;
+
+SELECT * 
+FROM student2
+WHERE marks > 93;
+
+SELECT *
+FROM student2
+WHERE marks > 90 OR city = "Mumbai";
+
+SELECT *
+FROM student2
+WHERE marks
+BETWEEN 80 AND 100;
+
+SELECT * 
+FROM student2
+WHERE city IN ('DELHI','MUMBAI');
+
+SELECT *
+FROM student2
+WHERE city NOT IN ('DELHI','MUMBAI');
+
+SELECT * 
+FROM student2
+WHERE MARKS > 75
+LIMIT 3 ;
+
+SELECT * 
+FROM student2
+ORDER BY marks DESC
+LIMIT 3;
+
+SELECT COUNT(marks)
+FROM student2;
+
+SELECT city, AVG(marks)
+FROM student2
+GROUP BY city;
+
+
+
+
+
+
+
+
+
+
