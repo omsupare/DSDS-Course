@@ -310,6 +310,100 @@ SELECT * FROM Accounts
 WHERE AccountType = 'Savings' OR Balance > 50000;
 
 
+-- In Operator  01-07-26 ke baad
+
+SELECT firstname, lastname, accountcreationdate
+FROM Customers
+WHERE AccountcreationDate > '2026-07-01';
+
+-- Multiple customers by phone numbers using IN operator
+
+SELECT * FROM Customers;
+
+SELECT firstname,lastname,phone
+FROM Customers
+WHERE Phone IN (7854321045,9277476727,9876549125);
+
+SELECT firstname,lastname,phone
+FROM Customers
+WHERE Phone = '7854321045' OR Phone = '9277476727' OR Phone = '9876549125';
+
+-- BETWEEN OPERATOR
+
+SELECT * FROM Accounts;
+
+SELECT CustomerID, AccountType, Balance 
+FROM Accounts
+WHERE BALANCE BETWEEN '20000' AND '50000';  -- the values specified in range are included in the result
+
+SELECT CustomerID, AccountType, Balance 
+FROM Accounts
+WHERE BALANCE >= 20000 AND BALANCE <= 50000;   -- using comparison operators 
+
+-- LIKE OPERATOR : Used for pattern matching, % matches any number of charcater and even zero characters, _ matches only one character
+
+SELECT * FROM Customers;
+
+SELECT * 
+FROM Customers 
+WHERE FirstName LIKE 'K%';
+
+SELECT * FROM Accounts;
+
+SELECT * 
+FROM Accounts
+WHERE AccountType LIKE 'S%';
+
+SELECT * 
+FROM Customers 
+WHERE FirstName LIKE 'K%';
+
+-- Find all customers whose lastname ends with letter 'a' :
+
+SELECT * 
+FROM Customers 
+WHERE LastName LIKE '%a';
+
+-- Find all customers whose last name has exactly 3 chracters, not that much used
+SELECT * 
+FROM Customers
+WHERE LastName LIKE '___';
+
+-- Order By Clause :
+-- sort accounts table according to customer balance.
+SELECT customerID,Balance
+FROM Accounts
+ORDER BY Balance;
+
+-- sort the branches table according to the branch name
+SELECT BranchID, BranchName 
+FROM Branches
+ORDER BY BranchName;
+
+-- sort accounts table according to customer balance from highest to lowest
+SELECT accountID, Balance
+FROM Accounts
+ORDER BY Balance DESC;
+
+-- SORTING ACCORDING TO MULTIPLE COLUMNS:
+-- Sort accounts table according to the accounttype and balance
+SELECT CustomerID,AccountID,AccountType, Balance
+FROM Accounts
+ORDER BY AccountType DESC, Balance DESC;
+
+-- LIMIT AND OFFSET PAGINATION : DISTINCT
+
+-- Different types of accounts 
+
+SELECT DISTINCT AccountType
+FROM Accounts;
+
+SELECT * FROM Transactions;
+
+SELECT DISTINCT TransactionType, AccountID
+FROM Transactions;
+
+
 
 
 
