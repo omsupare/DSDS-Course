@@ -403,8 +403,86 @@ SELECT * FROM Transactions;
 SELECT DISTINCT TransactionType, AccountID
 FROM Transactions;
 
+SELECT * 
+FROM TRANSACTIONS
+LIMIT 2;
 
+-- OFFSET skip karta hai rows it works with limit
+SELECT * 
+FROM Customers
+LIMIT 2 OFFSET 2;
 
+SELECT customerID,Balance 
+FROM Accounts
+ORDER BY BALANCE DESC
+LIMIT 1 OFFSET 2;
 
+-- OR
+SELECT customerID,Balance
+FROM Accounts
+ORDER BY BALANCE DESC
+LIMIT 2,1;   -- HERE 2 specifies the rows to skip and 1 specifies no. of rows to return
 
+SELECT * FROM Accounts;
 
+SELECT * FROM customers;
+
+INSERT INTO Customers
+(CustomerID,FirstName,LastName,Email,Phone,AccountCreationDate,DateOfBirth)
+VALUES
+(106,'Priya','Patil','priya@gmail.com',NULL,'2026-08-01','2020-08-03'),
+(107,'Amit','Verma','amit@gmail.com','7865433562','2026-08-03','2020-07-02'),
+(108,'Sneha','Kulkarni','sneha@gmail.com',NULL,'2026-05-01','2020-10-03'),
+(109,'Abhijeet','Sirsat','abhi@gmail.com',NULL,'2026-08-01','2020-08-03');
+
+SELECT *
+FROM Customers
+WHERE Phone IS NULL;
+
+SELECT *
+FROM Customers
+WHERE Phone IS NOT NULL;
+
+SELECT * FROM Accounts;
+
+SELECT * FROM Branches;
+
+INSERT INTO Accounts
+(AccountID,AccountType,Balance,CustomerID,BranchID)
+VALUES
+(106,'Current',70000,106,201),
+(107,'Savings',55000,107,203),
+(108,'Current',25000,108,202),
+(109,'Savings',40000,109,203);
+
+SELECT * FROM Accounts;
+
+INSERT INTO Transactions
+(TransactionID,TransactionDate,Amount,TransactionType,AccountID)
+VALUES
+(1006,'2025-09-21',1200,'Debit Card',106),
+(1007,'2025-03-4',2500,'UPI',107),
+(1008,'2026-02-22',3000,'Net Banking',108),
+(1009,'2025-09-2',4000,'UPI',109);
+
+SELECT * FROM Transactions;
+
+-- INSERT INTO Loans
+-- (LoanID,LoanAmount,InterestRate,StartDate,EndDate,CustomerID)
+-- VALUES
+-- (),
+-- (),
+-- (1008,'2026-02-22',3000,'Net Banking',108),
+-- (1009,'2025-09-2',4000,'UPI',109);
+
+SELECT * FROM Loans;
+
+-- CASE STATEMENT :
+SELECT * FROM Accounts;
+
+SELECT CustomerID,Balance,
+CASE
+	WHEN Balance >= 50000 THEN "High Value"
+    ELSE "Low Value"
+END AS Category
+FROM Accounts;
