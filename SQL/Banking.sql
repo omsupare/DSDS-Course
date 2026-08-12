@@ -537,3 +537,78 @@ SELECT SUBSTRING('Quadratically',5);
 
 SELECT CustomerID, concat(substring(FirstName,1,1),".",LastName) AS FullName,phone
 FROM Customers;
+
+-- Trim Function :
+SELECT LENGTH("  Hello World  ");   -- without trim
+SELECT LENGTH(TRIM("  Hello World  "));  -- with trim
+SELECT LENGTH(TRIM(SUBSTRING("Hello World",6)));
+
+-- Replace Function :
+SELECT replace("MAT mat","M","C");   -- case sensitive hai
+
+ -- Built in Functions
+-- 1. Round
+SELECT * FROM Accounts;
+
+SELECT ROUND(AVG(Balance),2)
+FROM Accounts
+WHERE AccountType = 'Savings';
+
+-- 2. CEIL OR CEILING : always gives output in higher side
+SELECT CEIL(ROUND(AVG(Balance),2))
+FROM Accounts
+WHERE AccountType = 'Savings';
+
+-- 3. Floor : returns value smaller
+SELECT FLOOR(ROUND(AVG(Balance),2))
+FROM Accounts
+WHERE AccountType = 'Current';
+
+SELECT *
+FROM Transactions;
+
+SELECT ROUND(AVG(Amount),2)
+FROM Transactions
+WHERE TransactionType = 'UPI';
+
+SELECT FLOOR(ROUND(AVG(Amount),2))
+FROM Transactions
+WHERE TransactionType = 'UPI';
+
+
+-- MOD Values  -->gives us remainder after division
+SELECT (7/3);
+SELECT MOD(7,3);
+
+-- POWER()
+SELECT POWER(2,3); 
+SELECT POWER(1.5,3);
+
+-- SQRT()
+SELECT sqrt(16);
+
+-- DATE Functions AND TIME 
+-- NOW Functions
+
+SELECT NOW();  
+SELECT current_date();
+SELECT current_time();
+
+-- YEAR,MONTH,DAY
+SELECT * FROM customers;
+SELECT YEAR(DateOfBirth),MONTH(DateOfBirth) ,DAY(DateOfBirth) 
+FROM customers;
+
+-- datediff : to find difference between the two dates
+SELECT *
+FROM Customers;
+
+SELECT CONCAT(FirstName," ",LastName) AS FullName,DateOfBirth,floor(datediff(current_date(),dateofbirth)/365) as age
+FROM customers;
+
+-- date_add() -- expiry date
+SELECT CONCAT(FirstName," ",LastName) AS FullName,
+AccountCreationDate,
+DATE_ADD(AccountCreationDate,INTERVAL 1 YEAR) AS KYCRenewal
+FROM Customers;
+
