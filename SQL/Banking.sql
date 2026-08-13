@@ -612,3 +612,76 @@ AccountCreationDate,
 DATE_ADD(AccountCreationDate,INTERVAL 1 YEAR) AS KYCRenewal
 FROM Customers;
 
+-- Aggregate Functions 
+-- 1.Count Function
+SELECT *
+FROM Customers;
+
+SELECT COUNT(*) AS TotalCustomers 
+FROM Customers;
+
+SELECT COUNT(phone) AS TotalCustomers 
+FROM Customers;
+
+-- 2. Sum Function
+SELECT * 
+FROM Accounts;
+
+SELECT SUM(Balance) AS TotalBalance
+FROM Accounts;
+
+SELECT SUM(Balance) AS SavingsBalance
+FROM Accounts
+WHERE AccountType = 'Savings';
+
+-- AVG() Function
+SELECT * 
+FROM Accounts;
+
+SELECT AVG(Balance) AS AvgAmountTransactions
+FROM Accounts;
+ 
+SELECT AVG(Balance) AS AvgAmountDeposited
+FROM Accounts
+WHERE AccountType = 'Savings';
+
+-- MAX() AND MIN()
+SELECT * 
+FROM Accounts;
+
+SELECT MAX(BALANCE)
+FROM Accounts
+WHERE AccountType = 'Savings';
+
+SELECT MIN(BALANCE)
+FROM Accounts
+WHERE AccountType = 'Savings';
+
+-- GROUP BY CLAUSE
+SELECT * FROM Transactions;
+
+SELECT TransactionType,ROUND(SUM(Amount)) AS TotalAmount
+FROM Transactions
+GROUP BY(TransactionType);
+
+SELECT * FROM Accounts;
+
+SELECT AccountType,COUNT(*),
+SUM(Balance) AS TotalBalance,
+AVG(Balance) AS AvgBalance
+FROM Accounts
+GROUP BY(AccountType);
+
+SELECT * FROM BRANCHES;
+
+SELECT * FROM Accounts;
+SELECT branchID,AccountType,COUNT(AccountType) AS NoOfAccounts
+FROM Accounts
+GROUP BY branchID,accountType
+ORDER BY BranchID;
+
+-- Having  group by ke results ko filter kar rahe hai
+SELECT branchID,AccountType,COUNT(AccountType) AS NoOfAccounts
+FROM Accounts
+GROUP BY branchID,accountType
+HAVING NoOfAccounts >= 2 AND AccountType = 'Savings';
