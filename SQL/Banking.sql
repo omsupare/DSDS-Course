@@ -666,6 +666,8 @@ GROUP BY(TransactionType);
 
 SELECT * FROM Accounts;
 
+-- Print the group according to AccountType on SUM of balance and avg balance and also specify the count 
+-- single group by condition 
 SELECT AccountType,COUNT(*),
 SUM(Balance) AS TotalBalance,
 AVG(Balance) AS AvgBalance
@@ -674,6 +676,7 @@ GROUP BY(AccountType);
 
 SELECT * FROM BRANCHES;
 
+-- Multiple Group By conditions 
 SELECT * FROM Accounts;
 SELECT branchID,AccountType,COUNT(AccountType) AS NoOfAccounts
 FROM Accounts
@@ -685,3 +688,17 @@ SELECT branchID,AccountType,COUNT(AccountType) AS NoOfAccounts
 FROM Accounts
 GROUP BY branchID,accountType
 HAVING NoOfAccounts >= 2 AND AccountType = 'Savings';
+
+
+
+SELECT * FROM customers;
+
+-- Find No. of accounts creation in specific years
+SELECT YEAR(AccountCreationDate) AS Years,
+COUNT(YEAR(AccountCreationDate)) AS NoOfAccCreation
+FROM Customers
+GROUP BY YEAR(AccountCreationDate)
+ORDER BY Years;
+
+
+
