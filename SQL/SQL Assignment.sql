@@ -25,4 +25,6 @@ ALTER TABLE customer_orders
 MODIFY ID INT PRIMARY KEY;
 
 SELECT * FROM customer_orders;
+
+
   

@@ -567,10 +567,12 @@ WHERE AccountType = 'Current';
 SELECT *
 FROM Transactions;
 
+-- UPI AND AVG Amount from Transactions 
 SELECT ROUND(AVG(Amount),2)
 FROM Transactions
 WHERE TransactionType = 'UPI';
 
+-- USE Floor 
 SELECT FLOOR(ROUND(AVG(Amount),2))
 FROM Transactions
 WHERE TransactionType = 'UPI';
@@ -603,6 +605,7 @@ FROM customers;
 SELECT *
 FROM Customers;
 
+-- Display FullName, and age in years from customers
 SELECT CONCAT(FirstName," ",LastName) AS FullName,DateOfBirth,floor(datediff(current_date(),dateofbirth)/365) as age
 FROM customers;
 
@@ -700,5 +703,40 @@ FROM Customers
 GROUP BY YEAR(AccountCreationDate)
 ORDER BY Years;
 
+-- Joins 
 
+SELECT * FROM Loans;
+SELECT * FROM Customers;
 
+-- Find all customers having loans with their names
+
+SELECT c.customerID,c.FirstName,c.LastName,l.LoanAmount,l.InterestRate
+FROM Customers c
+INNER JOIN loans l
+ON
+c.CustomerID = l.CustomerID;
+
+-- Find BranchNames for all the Accountids savepoint
+-- include accountid,accountype and branchname,branchaddress
+
+SELECT * FROM Branches;
+SELECT * FROM Accounts;
+
+SELECT a.AccountId,a.AccountType,b.BranchName,b.BranchAddress
+FROM Accounts a
+INNER JOIN Branches b
+ON
+a.BranchId = b.BranchId
+WHERE AccountType = 'Savings';
+
+SELECT * FROM Transactions;
+SELECT * FROM Accounts;
+
+-- Find all the customers name,phone,accounttype,balance where account type is savings
+ 
+SELECT c.FirstName,c.LastName,c.Phone,a.AccountType,a.Balance
+FROM Customers c
+INNER JOIN Accounts a
+ON
+c.CustomerId = a.CustomerId
+WHERE AccountType = 'Savings';
