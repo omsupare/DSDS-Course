@@ -276,5 +276,91 @@ FROM Accounts
 WHERE AccountType != 'Salary' AND Balance BETWEEN 15000 AND 90000;
 
 -- Level 5 (Challenge Questions)
+-- Q.41 Display first 5 customers whose FirstName starts with A or R, ordered by CustomerID.
+
+SELECT *
+FROM Customers;
+
+SELECT CustomerId,FirstName,LastName
+FROM Customers
+WHERE FirstName LIKE 'A%' OR FirstName LIKE 'R%'
+LIMIT 5;
+
+-- Q. 42 Display Savings and Salary accounts whose balance is greater than ₹15,000 and less than ₹60,000.
+SELECT * 
+FROM Accounts;
+
+SELECT AccountId,AccountType,Balance
+FROM Accounts
+WHERE (AccountType = 'Savings' OR  AccountType = 'Salary') AND 
+(Balance BETWEEN 15000 AND 60000);
  
+-- Q.43 Display customers whose CustomerID is IN (101,103,105,107,109) and DateOfBirth is between 1994 and 2000.
+SELECT * 
+FROM Customers;
+
+SELECT CustomerId,FirstName,LastName,YEAR(DateOfBirth)
+FROM Customers
+WHERE CustomerId IN (101,103,105,107,109)
+AND YEAR(DateOfBirth) BETWEEN  1994 AND 2000;
+
+-- Q.44 Display transactions whose amount is greater than ₹2000 but less than ₹8000 and TransactionType is not Withdrawal.
+-- NOT IN MY DATASET
+
+-- Q.45 Display customers whose phone number is NULL or FirstName contains 'an'.
+SELECT *
+FROM Customers;
+
+SELECT CustomerId,FirstName,LastName,Phone
+FROM Customers
+WHERE FirstName LIKE 'an%' AND PHONE IS NULL;   
+
+-- Q.46 Display distinct AccountTypes where balance is greater than ₹20,000.
+SELECT *
+FROM Accounts;
+
+SELECT AccountId,AccountType,Balance
+FROM Accounts
+WHERE Balance > 20000;
+
+-- Q.47 Display customers after skipping first 2 records and display only the next 4 records.
+SELECT *
+FROM Customers;
+
+SELECT *
+FROM Customers
+LIMIT 7 OFFSET 2;
+
+-- Q.48 Display customers whose last name ends with 'kar' and email contains gmail.
+SELECT *
+FROM Customers;
+
+SELECT *
+FROM Customers
+WHERE LastName LIKE '%kar' AND Email LIKE '%gmail.com';
+
+-- Q.49 Display accounts whose BranchID is IN (201,202) and balance is between ₹20,000 and ₹70,000.  -- JOINS
+SELECT *
+FROM Branches;
+
+SELECT *
+FROM Accounts;
+
+SELECT b.branchId,a.AccountId,a.Balance
+FROM Branches b
+INNER JOIN Accounts a
+ON
+b.branchId = a.branchId;
+
+-- Q.50 Display all customers whose first name starts with S, phone number is not NULL, and account was created between 1-Jan-2025 and 31-Dec-2025.
+SELECT *
+FROM Customers;
+
+SELECT FirstName,LastName,Phone,AccountCreationDate
+FROM Customers
+WHERE FirstName LIKE 'S%' AND 
+Phone IS NOT NULL AND 
+AccountCreationDate BETWEEN 2025-01-01 AND 2025-12-31; 
+
+-- Trichy Questions 
  

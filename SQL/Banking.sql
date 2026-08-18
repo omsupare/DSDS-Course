@@ -740,3 +740,93 @@ INNER JOIN Accounts a
 ON
 c.CustomerId = a.CustomerId
 WHERE AccountType = 'Savings';
+
+-- Left Join :
+SELECT * FROM Customers;
+
+INSERT INTO Customers(CustomerId,FirstName,LastName,Email,Phone,AccountCreationDate,DateOfBirth)
+VALUES
+	(110,'Vikram','Joshi','vikram@gmail.com',9765439765,'2026-05-12','2003-03-03'),
+    (111,'Ronit','Parmar','ronit@gmail.com',NULL,'2026-04-10','2001-07-01'),
+    (112,'Ayush','Bhel','ayush@gmail.com',8786757657,'2024-01-23','2002-08-29');
+    
+-- Find the customers name and its acountType and Balance : 
+SELECT c.FirstName,c.LastName,c.Phone,a.accountType,a.balance
+FROM Customers c
+LEFT JOIN Accounts a
+ON c.CustomerId = a.CustomerId;
+
+SELECT c.FirstName,c.LastName,c.Phone,a.accountType,a.balance
+FROM Accounts a
+LEFT JOIN Customers c
+ON c.CustomerId = a.CustomerId;
+
+SELECT c.FirstName,c.LastName,c.Phone,a.accountType,a.balance
+FROM Customers c
+JOIN Accounts a
+ON c.CustomerId = a.CustomerId;
+
+-- Right Join : second table will be the preference 
+SELECT *
+FROM Branches;
+
+INSERT INTO Branches
+VALUES
+(204,'Nashik Branch','College Road,Nashik','464645');
+
+SELECT *
+FROM Accounts
+ORDER BY AccountId;
+
+SELECT *
+FROM Customers
+ORDER BY CustomerId;
+
+INSERT INTO Accounts(AccountID,AccountType,Balance,CustomerId,BranchId)
+VALUES
+(206,'Savings',56000,111,204),
+(207,'Current',92000,112,202);
+
+SELECT *
+FROM Accounts;
+
+SELECT *
+FROM Transactions;
+
+SELECT * FROM Accounts;
+
+INSERT INTO Transactions(TransactionId,TransactionDate,Amount,TransactionType,AccountId)
+VALUES
+(1010,'2025-03-10',8000,'Deposit',106),
+(1011,'2025-03-15',1500,'Withdrawal',107),
+(1012,'2025-03-20',12000,'Deposit',108),
+(1013,'2025-04-05',4000,'Withdrawal',109),
+(1014,'2025-04-10',7000,'Deposit',201),
+(1015,'2025-04-15',2500,'Withdrawal',202),
+(1016,'2025-05-01',6000,'Deposit',203),
+(1017,'2025-05-10',2000,'Deposit',204);
+
+INSERT INTO Transactions(TransactionId,TransactionDate,Amount,TransactionType,AccountId)
+VALUES 
+(1018,'2025-04-19',3000,'Withdrawal',205);
+
+SELECT * FROM Transactions;
+SELECT * FROM Accounts;
+INSERT INTO Accounts(AccountId,AccountType,Balance,CustomerId,BranchID)
+VALUES
+(208,'Savings',12000,106,201),
+(209,'Current',50000,107,202);
+
+SELECT a.AccountId,CONCAT(c.FirstName," ",c.LastName) AS FullName,a.AccountType,a.Balance
+FROM Customers c
+INNER JOIN Accounts a 
+ON
+c.customerId = a.customerId
+ORDER BY AccountID;
+
+SELECT c.CustomerId,CONCAT(c.FirstName," ",c.LastName) AS FullName,a.AccountType,a.Balance
+FROM Customers c
+INNER JOIN Accounts a 
+ON
+c.customerId = a.customerId
+ORDER BY CustomerId;

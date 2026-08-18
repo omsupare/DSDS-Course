@@ -118,3 +118,35 @@ SELECT CONCAT(FirstName,' ',LastName) AS FullName,
 DateOfBirth,
 FLOOR(datediff(current_date(),DateOfBirth)/365) AS Age
 FROM Customers; 
+
+-- INNER Join :
+-- Find all the customers having with the loans :
+SELECT * FROM Customers;
+SELECT * FROM Loans;
+
+SELECT  c.FirstName,c.LastName,l.loanAmount,l.InterestRate
+FROM Customers c
+JOIN Loans l
+ON
+c.customerId = l.customerId;
+
+--  Find BranchNames for all the Accountids
+--  Include accountid,accountype and branchname,branchaddress  
+
+SELECT * FROM Branches;
+SELECT * FROM Accounts;
+
+SELECT a.AccountId,a.AccountType,b.BranchName,b.BranchAddress
+FROM Accounts a
+JOIN Branches b
+ON
+a.BranchId = b.BranchId
+WHERE AccountType = 'Savings';
+
+-- Find all the customers name,phone,accounttype,balance where account type is savings
+SELECT FirstName,LastName,Phone,AccountType,Balance
+FROM Customers c
+JOIN Accounts a 
+ON
+c.customerId = a.customerID
+Where AccountType = 'Savings';
