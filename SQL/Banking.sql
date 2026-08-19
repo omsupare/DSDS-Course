@@ -830,3 +830,19 @@ INNER JOIN Accounts a
 ON
 c.customerId = a.customerId
 ORDER BY CustomerId;
+
+-- Full Outer Join (UNION)  not that much use
+-- Joining Customers and accounts
+
+SELECT * FROM Customers c 
+LEFT JOIN Accounts a 
+ON c.CustomerId = a.AccountId 
+UNION
+SELECT * FROM Accounts a 
+Right JOIN Customers c 
+ON c.CustomerId = a.AccountId; 
+
+-- Cross Join  not that important
+SELECT * 
+FROM Customers c 
+CROSS JOIN Accounts a; 

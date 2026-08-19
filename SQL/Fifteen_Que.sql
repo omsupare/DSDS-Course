@@ -176,12 +176,24 @@ HAVING NumOfLoans < 1;
 SELECT * FROM Customers;
 
 SELECT * FROM Transactions;
+SELECT * FROM Accounts;
 																-- triple joins use hoga
 SELECT c.CustomerId,COUNT(TransactionType)
 FROM Customers c 
 LEFT JOIN Transactions t 
 ON
 c.Customer = t.accountId;   -- matching nhi hai
+
+SELECT c.CustomerId,
+CONCAT(c.FirstName," ",c.LastName) AS FullName,
+COUNT(t.AccountId) AS  NumOfTransactions
+FROM Customers c 
+JOIN Accounts a 
+ON c.CustomerId = a.CustomerId
+LEFT JOIN Transactions t 
+ON t.accountId = a.AccountId
+GROUP BY c.CustomerId
+HAVING NumOfTransactions = 0;
 
 -- Q. 15 Display all branches and their account count, including branches that have zero accounts.
 
@@ -220,3 +232,26 @@ SELECT * FROM Accounts;
 SELECT AccountType,COUNT(CustomerID) AS NumOFCust
 FROM Accounts
 GROUP BY AccountType;
+
+SELECT a.AccountType,COUNT(a.CustomerId) AS NumOfCust
+FROM Customers c 
+LEFT JOIN Accounts a 
+ON 
+c.CustomerId = a.CustomerId
+GROUP BY a.AccountType;
+
+-- Q.16 Display all Savings account customers along with their branchName :
+SELECT *
+FROM Accounts;
+
+SELECT * FROM Branches;
+
+SELECT CONCAT(c.FirstName," ",c.LastName) AS FullName,a.CustomerId,AccountType,BranchName
+FROM Accounts a 
+INNER JOIN Branches b 
+ON 
+a.branchId = b.branchId
+INNER JOIN Customers c 
+ON c.customerId = a.customerId
+WHERE a.AccountType = 'Savings'
+ORDER BY a.customerId;
