@@ -942,3 +942,72 @@ INNER JOIN Employees m
 ON 
 e.ManagerID = m.EmployeeID
 WHERE m.employeename = 'Sneha Verma';
+
+--  find customer names whoes avg balance is greater than savings account
+SELECT * FROM Accounts;
+
+SELECT CONCAT(c.FirstName," ",c.LastName) AS FullName,a.AccountType,AVG(a.Balance) AS AverageBalance
+FROM Customers c 
+LEFT JOIN Accounts a 
+ON 
+c.CustomerId = a.CustomerId 
+WHERE a.AccountType = 'Savings'
+GROUP BY FullName
+HAVING AVG(a.Balance) > 51692.30;    -- hard coded daaldi isiliye hum subqueries use karte hai
+
+SELECT AVG(Balance) FROM Accounts;
+
+-- select,update,insert,delete we can use subquery 
+-- important topic asked in interview  
+-- subquery is query inside another query 
+-- 1.Scaler SUb Query / Single Value Sub Query --> returns excatly one row and one column
+-- 2.Mulltiple Row Sub Query 
+-- 3.Table Sub Query 
+-- 4. Correlated Sub Query
+
+--  find customer names whoes avg balance is greater than savings account using subquery
+SELECT * FROM Accounts;
+
+SELECT CONCAT(c.firstName," ",c.lastName) AS FULLNAME,a.AccountType,a.Balance
+FROM Customers c
+LEFT JOIN Accounts a 
+ON
+c.CustomerId = a.CustomerId
+WHERE AccountType = 'Savings' AND a.Balance > (
+	SELECT AVG(Balance) FROM Accounts
+);
+
+-- Accountids having av balnace > savings account
+
+SELECT AccountId,AccountType,Balance
+FROM Accounts
+WHERE AccountType = 'Savings' AND Balance > (
+	SELECT AVG(Balance)
+    FROM Accounts
+);
+
+-- Find the accounts having highest balance :
+SELECT AccountId,CustomerId,Balance
+FROM Accounts
+WHERE Balance = (
+	SELECT MAX(Balance) FROM Accounts
+);
+
+-- Find customers whose year of birth is earlier than the average year of birth of all customers 
+SELECT *
+FROM Customers; 
+
+SELECT FirstName,AVG(YEAR(DateOfBirth))
+FROM Customers
+GROUP BY FirstName
+HAVING AVG(YEAR(DateOfBirth)) < 2006;
+
+-- Using sub query 
+SELECT FirstName,LastName,DateOfBirth,YEAR(DateOfBirth) AS YearOfBirth
+FROM Customers
+WHERE Year(DateOfBirth) < (
+	SELECT FLOOR(AVG(YEAR(DateOfBirth)))
+    FROM Customers
+);
+
+SELECT AVG(YEAR(DateOfBirth)) FROM Customers;
