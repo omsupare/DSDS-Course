@@ -150,3 +150,32 @@ JOIN Accounts a
 ON
 c.customerId = a.customerID
 Where AccountType = 'Savings';
+
+-- Sub Queries :
+-- AccountIDs having avg balance greater than savings accounts
+SELECT AccountID,AccountType,Balance
+FROM Accounts
+WHERE AccountType = 'Savings' AND Balance > (
+	SELECT AVG(Balance) FROM Accounts
+);
+
+-- Find the accounts having highest balance :
+SELECT AccountID,Balance
+FROM Accounts 
+WHERE Balance = (
+	SELECT MAX(Balance) FROM Accounts
+); 
+
+-- Find customers whose year of birth is earlier than the average year of birth of all customers.
+SELECT *
+FROM Customers; 
+
+SELECT CONCAT(FirstName," ",LastName) AS FullName,YEAR(DateOfBirth)
+FROM Customers
+WHERE YEAR(DateOfBirth) < (
+	SELECT FLOOR(AVG(YEAR(DateOfBirth))) FROM Customers
+);
+
+SELECT FLOOR(AVG(YEAR(DateOfBirth))) AS YearOfBirth 
+FROM Customers;
+
