@@ -1011,3 +1011,80 @@ WHERE Year(DateOfBirth) < (
 );
 
 SELECT AVG(YEAR(DateOfBirth)) FROM Customers;
+
+-- Multi Row Sub Query :
+-- returns more than one row,usually a single colummn 
+
+-- Q.1 Find all customers who have taken at least one loan.  
+SELECT *
+FROM Customers;
+SELECT * 
+FROM Loans;
+
+SELECT c.CustomerID,c.FirstName,c.LastName,l.LoanID,l.LoanAmount
+FROM Loans l
+LEFT JOIN Customers c
+On
+c.CustomerID = l.CustomerID
+WHERE l.CustomerID IN (
+	SELECT DISTINCT CustomerID FROM Loans
+);
+
+SELECT CustomerID,FirstName,Phone
+FROM Customers
+WHERE CustomerID IN (
+	SELECT CustomerID FROM Loans
+);
+
+-- Q.2 Find all customers who have not taken any loan.
+SELECT CustomerID,FirstName,Phone
+FROM Customers
+WHERE CustomerID NOT IN (
+	SELECT CustomerID FROM Loans
+);
+
+-- Q.3 Find all customers who have at least one Savings account.
+SELECT *
+FROM Customers
+WHERE CustomerID IN (
+	SELECT CustomerID
+    FROM Accounts 
+    WHERE AccountType = 'Savings'
+); 
+
+SELECT CustomerID,AccountType
+    FROM Accounts 
+    WHERE AccountType = 'Savings';
+    
+-- Q.4 Find all customers who have an account in BranchID = 201.
+SELECT *
+FROM Customers
+WHERE CustomerID IN (
+	SELECT CustomerID
+    FROM Accounts
+    WHERE BranchID = 201
+);  
+
+SELECT *
+    FROM Accounts
+    WHERE BranchID = 201;
+    
+-- Q.4 Find all accounts whose balance is greater than any account in BranchID = 1.
+SELECT *
+FROM Accounts
+WHERE Balance > ALL (
+	SELECT balance FROM Accounts
+	WHERE BranchID = 201
+);
+
+SELECT balance FROM Accounts
+WHERE BranchID = 201 AND Balance > (
+	SELECT Balance FROM Accounts
+);
+
+-- Q.6 Find the branch with highest average account balance
+SELECT *
+FROM Accounts;
+
+SELECT AVG(Balance)
+FROM Accounts;

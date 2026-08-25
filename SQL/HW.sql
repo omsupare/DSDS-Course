@@ -837,4 +837,3 @@ SELECT *
 FROM Customers
 WHERE FirstName LIKE 'S%' AND Phone IS NOT NULL AND (AccountCreationDate BETWEEN '2025-01-01' AND '2025-12-31');
 
- 

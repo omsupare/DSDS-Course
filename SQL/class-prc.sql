@@ -179,3 +179,91 @@ WHERE YEAR(DateOfBirth) < (
 SELECT FLOOR(AVG(YEAR(DateOfBirth))) AS YearOfBirth 
 FROM Customers;
 
+-- Multi - Row SubQuery :
+-- Q.1 Find all customers who have taken at least one loan.  
+SELECT *
+FROM Customers
+WHERE CustomerID IN (
+	SELECT CustomerID FROM Loans
+); 
+SELECT * FROM Loans;
+
+-- Q.2 Find all customers who have not taken any loan. 
+SELECT * FROM Loans;
+SELECT *
+FROM Customers
+WHERE CustomerID NOT IN (
+	SELECT CustomerId FROM Loans
+);
+
+-- Q.3 Find all customers who have at least one Savings account.
+SELECT *
+FROM Customers;
+
+SELECT *
+FROM Accounts;
+
+SELECT *
+FROM Customers
+WHERE CustomerID IN(
+	SELECT CustomerID
+	FROM Accounts
+	WHERE AccountType = 'Savings' 
+);
+
+SELECT CustomerID,AccountType
+FROM Accounts
+WHERE AccountType = 'Savings';
+
+-- Q.4 Find all customers who have an account in BranchID = 201.
+SELECT *
+FROM Accounts;
+
+SELECT *
+FROM Branches;
+
+SELECT *
+FROM Accounts
+WHERE BranchID IN(
+	SELECT BranchID 
+	FROM Branches 
+	WHERE BranchID = 201
+);
+
+SELECT BranchID 
+FROM Branches 
+WHERE BranchID = 201;
+
+-- Q.5 Find all accounts whose balance is greater than any account in BranchID = 201.  (ANY-OR)  --> minimum value
+SELECT *
+FROM Accounts
+WHERE Balance > ANY (
+	SELECT Balance
+    FROM Accounts
+    WHERE BranchID = 201
+);
+
+SELECT AccountID,Balance
+    FROM Accounts
+    WHERE BranchID = 201;
+    
+-- Q.6 Find the branch with highest average account balance.
+SELECT * FROM Accounts;
+SELECT AVG(Balance) AS AverageBal,BranchID
+FROM Accounts
+GROUP BY BranchID
+ORDER BY AverageBal DESC
+LIMIT 1;
+
+SELECT * FROM Accounts;
+
+SELECT BranchID,Balance
+FROM Accounts
+WHERE Balance > ALL (
+	SELECT AVG(Balance) AS AverageBal               -- 56000 Average bal tha toh usse bade vals
+	FROM Accounts
+);
+
+SELECT AVG(Balance),BranchID AS AverageBal
+FROM Accounts
+GROUP BY BranchID;
