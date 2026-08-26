@@ -1088,3 +1088,75 @@ FROM Accounts;
 
 SELECT AVG(Balance)
 FROM Accounts;
+
+-- Correlated SubQuery :  important hai
+-- References one or more columns from the outer query.
+
+-- SELECT u.username
+-- from users u
+-- WHERE u.FOLLOWERS > (
+-- SELECT AVG(Followers)
+-- FROM users
+-- WHERE country = u.country
+-- );
+
+-- Q.7 Find accounts whose balance is greater than the average
+-- balance of their respective branch
+SELECT * FROM Accounts;
+
+SELECT a.AccountID,a.Balance,a.BranchID 
+FROM Accounts a
+WHERE Balance > (
+	SELECT AVG(a2.Balance)
+    FROM Accounts a2
+    WHERE a2.branchID = a.BranchID
+    -- WHERE a2.BranchID IN(201,202,203,204)
+);
+SELECT AVG(Balance) FROM Accounts
+WHERE BranchID = 201;
+SELECT AVG(Balance) FROM Accounts
+WHERE BranchID = 202;
+SELECT AVG(Balance) FROM Accounts
+WHERE BranchID = 203;
+SELECT AVG(Balance) FROM Accounts
+WHERE BranchID = 204;
+
+-- Q.8 23.	Find employees whose salary is greater than 
+-- the average salary of their respective department.  
+SELECT * FROM Employees;
+
+SELECT e.EmployeeID,e.EmployeeName,e.Department,e.salary
+FROM Employees e
+WHERE Salary > (
+	SELECT AVG(e2.Salary)
+    FROM Employees e2 
+    WHERE e2.Department = e.Department
+);
+
+-- Q.9 Find Customers who have more than one Account.
+SELECT *
+FROM Accounts a
+WHERE a.CustomerID = (
+	SELECT a2.CustomerID 
+    FROM Accounts a2
+    WHERE a2.CustomerID = a.CustomerID
+);
+
+SELECT COUNT(a2.CustomerID)
+    FROM Accounts a2;
+    
+SELECT CustomerID,FirstName,LastName
+FROM Customers c
+WHERE (
+	SELECT COUNT(*)
+    FROM Accounts a 
+    WHERE c.CustomerID = a.CustomerID
+) > 1; 
+
+SELECT CustomerID,COUNT(CustomerID) AS NumOFAcc
+FROM Accounts
+GROUP BY CustomerID
+HAVING NumOFAcc > 1;
+
+-- Table Sub Query Derived Table -- Inline View
+
