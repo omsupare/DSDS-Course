@@ -267,3 +267,42 @@ WHERE Balance > ALL (
 SELECT AVG(Balance),BranchID AS AverageBal
 FROM Accounts
 GROUP BY BranchID;
+
+-- Q.7 Find accounts whose balance is greater than the average
+-- balance of their respective branch
+
+SELECT *
+FROM Accounts;
+
+SELECT a.AccountID,a.Balance,a.BranchID
+FROM Accounts a
+WHERE a.Balance > (
+	SELECT AVG(a2.Balance)
+    FROM Accounts a2
+    WHERE a2.BranchID = a.BranchID
+);  
+
+SELECT AVG(a2.Balance),a2.BranchID
+    FROM Accounts a2
+    GROUP BY a2.BranchID;
+    
+-- Q.8 Find Employees whose salary is greater than average salary of their respective department
+SELECT *
+FROM Employees;
+
+SELECT e.EmployeeID,e.EmployeeName,e.Salary
+FROM Employees e
+WHERE e.Salary > (
+	SELECT AVG(Salary)
+    FROM Employees e2 
+    WHERE e2.Department = e.Department
+);
+
+-- Q.9 Find Customers who have more than one Account.
+SELECT c.CustomerID,c.FirstName,c.LastName
+FROM Customers c
+WHERE (
+	SELECT COUNT(*)
+    FROM Accounts a
+    WHERE a.CustomerID = c.CustomerID
+) > 1 ;

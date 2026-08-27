@@ -1121,7 +1121,7 @@ WHERE BranchID = 203;
 SELECT AVG(Balance) FROM Accounts
 WHERE BranchID = 204;
 
--- Q.8 23.	Find employees whose salary is greater than 
+-- Q.8	Find employees whose salary is greater than 
 -- the average salary of their respective department.  
 SELECT * FROM Employees;
 
@@ -1159,4 +1159,62 @@ GROUP BY CustomerID
 HAVING NumOFAcc > 1;
 
 -- Table Sub Query Derived Table -- Inline View
+-- Q.1 Find the average account balance fot each account type using a derived table
+SELECT * FROM Accounts;
 
+SELECT Accounts_Data.AccountType,Accounts_Data.Avg_Bal
+FROM (
+	SELECT AccountType,AVG(Balance)AS Avg_Bal
+    FROM Accounts
+	GROUP BY AccountType
+) AS Accounts_Data;   -- correct kia 
+
+SELECT AccountBalance.AccountType,AccountBalance.AvgBalance
+FROM(
+    SELECT AccountType,AVG(Balance) AS AvgBalance FROM Accounts
+    GROUP BY (AccountType)
+    ) AccountBalance;
+    
+-- Q.2 Display only those account types whose average balance is greater than 50000.
+
+SELECT AccountBalance.AccountType,AccountBalance.AvgBalance
+FROM (
+	SELECT AccountType,AVG(Balance) AS AvgBalance FROM Accounts
+    GROUP BY (AccountType)
+    ) AccountBalance
+    WHERE AccountBalance.AvgBalance > 50000;
+    
+-- Q.3 Find top 3 Customers based on the total account balance :
+SELECT AccountBalance.CustomerID,AccountBalance.FirstName,AccountBalance.TotalBalance
+FROM(
+	SELECT a.CustomerID,c.FirstName,SUM(a.Balance) AS TotalBalance
+    FROM Accounts a
+    INNER JOIN Customers c 
+    ON
+    a.customerID = c.CustomerID
+    GROUP BY (CustomerID)
+    ORDER BY TotalBalance DESC
+    LIMIT 3
+    ) AccountBalance;
+    
+-- SubQuery inside select clause :
+-- Q.1 Display each customer along with the number of accounts they have:
+SELECT c.CustomerID,
+	(
+    SELECT COUNT(*)
+    FROM Accounts a2
+    WHERE a2.customerID = c.customerID
+    ) AS NumOfAcc
+FROM Customers c
+ORDER BY c.CustomerID;
+
+-- Subqueries inside update clause,
+-- increase the balance of accounts belonging to customers who have taken a loan by 5% 
+
+UPDATE Accounts
+SET Balance = balance + balance*0.05
+WHERE customerID IN (
+	SELECT customerID
+    FROM Loans
+);
+SELECT * FROM Accounts;
