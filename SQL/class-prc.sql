@@ -306,3 +306,53 @@ WHERE (
     FROM Accounts a
     WHERE a.CustomerID = c.CustomerID
 ) > 1 ;
+
+-- Table related subquery :
+-- Q.1 Find the average account balance for each account type using a derived table.
+
+SELECT * FROM Accounts;
+SELECT AVG(Balance),AccountType
+FROM Accounts
+GROUP BY AccountType;
+
+SELECT Accounts_Data.AccountType,Accounts_Data.AvgBal
+FROM (
+	SELECT AVG(Balance) AS AvgBal
+    FROM Accounts
+    GROUP BY AccountType
+) AS Accounts_Data;
+
+-- Q.2 Display only those account types whose average balance is greater than 50000.
+SELECT TotalBalance.AccountType,TotalBalance.AvgBal
+FROM (SELECT AccountType,AVG(Balance) AS AvgBal
+	  FROM Accounts
+      GROUP BY AccountType
+      ) AS TotalBalance  
+      WHERE TotalBalance.AvgBal > 50000;
+      
+-- Q.3 Find top 3 Customers based on the total account balance :
+SELECT * FROM Accounts;
+SELECT * FROM Customers;
+
+SELECT TotalBal.FirstName,TotalBal.Balance
+FROM (SELECT c.FirstName,a.Balance
+    FROM Customers c 
+    INNER JOIN Accounts a 
+    ON c.CustomerID = a.CustomerID
+    ORDER BY a.Balance DESC
+    LIMIT 3) AS TotalBal;
+    
+-- SubQueries inside update clause :
+-- -- increase the balance of accounts belonging to customers who have taken a loan by 5% 
+SELECT * FROM Loans;
+SELECT * FROM Accounts;
+
+UPDATE Accounts
+SET Balance = Balance * 0.05
+WHERE CustomerId IN(
+	SELECT CustomerID
+    FROM Loans
+);
+
+SELECT * FROM Accounts;
+

@@ -227,14 +227,14 @@ SELECT * FROM Transactions;
 INSERT INTO Transactions 
 (TransactionID,TransactionDate,Amount,TransactionType,AccountID) 
 VALUES
-(1001,'2026-08-04', 30.00, 'Net Banking',201);
+(1001,'2026-08-04', 15000, 'Withdrawal',201);
 
 INSERT INTO Transactions (TransactionID, TransactionDate, Amount, TransactionType, AccountID) 
 VALUES
-(1002, '2026-08-04', 150.00, 'UPI', 201),
-(1003, '2026-08-05', 45.50, 'Debit Card', 202),
-(1004, '2026-08-05', 1200.00, 'Credit', 203),
-(1005, '2026-08-06', 85.25, 'Net Banking', 204);
+(1002, '2026-08-04', 20000, 'Deposit', 201),
+(1003, '2026-08-05', 12000, 'Withdrawal', 202),
+(1004, '2026-08-05', 16000, 'Deposit', 203),
+(1005, '2026-08-06', 13000, 'Withdrawal', 204);
 
 
 SELECT * FROM customers;
@@ -460,10 +460,10 @@ SELECT * FROM Accounts;
 INSERT INTO Transactions
 (TransactionID,TransactionDate,Amount,TransactionType,AccountID)
 VALUES
-(1006,'2025-09-21',1200,'Debit Card',106),
-(1007,'2025-03-4',2500,'UPI',107),
-(1008,'2026-02-22',3000,'Net Banking',108),
-(1009,'2025-09-2',4000,'UPI',109);
+(1006,'2025-09-21',12000,'Deposit',106),
+(1007,'2025-03-4',35000,'Withdrawal',107),
+(1008,'2026-02-22',32000,'Deposit',108),
+(1009,'2025-09-2',3000,'Withdrawal',109);
 
 SELECT * FROM Transactions;
 
@@ -848,6 +848,8 @@ FROM Customers c
 CROSS JOIN Accounts a; 
 
 -- Self Join
+
+
 CREATE TABLE Employees(
 	  EmployeeID INT PRIMARY KEY,
       EmployeeName VARCHAR(50) NOT NULL,
@@ -1069,7 +1071,7 @@ SELECT *
     FROM Accounts
     WHERE BranchID = 201;
     
--- Q.4 Find all accounts whose balance is greater than any account in BranchID = 1.
+-- Q.5 Find all accounts whose balance is greater than any account in BranchID = 1.
 SELECT *
 FROM Accounts
 WHERE Balance > ALL (
@@ -1173,7 +1175,7 @@ SELECT AccountBalance.AccountType,AccountBalance.AvgBalance
 FROM(
     SELECT AccountType,AVG(Balance) AS AvgBalance FROM Accounts
     GROUP BY (AccountType)
-    ) AccountBalance;
+    ) AccountBalance;  -- sir ne kia tha
     
 -- Q.2 Display only those account types whose average balance is greater than 50000.
 
@@ -1218,3 +1220,138 @@ WHERE customerID IN (
     FROM Loans
 );
 SELECT * FROM Accounts;
+
+-- Delete all the transactions below 1000 where transactiontype is withdrawal:
+
+SELECT * FROM Transactions;
+
+DELETE FROM Transactions
+WHERE AccountID IN (
+	SELECT AccountID FROM (
+		SELECT Amount
+		FROM Transactions 
+		WHERE Amount < 15000 AND TransactionType = "Withdrawal")
+AS temporary) AND TransactionType = "Withdrawal";
+
+SELECT Amount
+    FROM Transactions 
+    WHERE Amount < 15000 AND TransactionType = "Withdrawal";
+
+SELECT * FROM Accounts;
+
+-- 34.Create a HighValueAccounts table and insert all accounts whose balance is greater than the average account balance.  
+CREATE TABLE HighValAccounts (
+	AccountID INT,
+    CustomerID INT,
+    BranchID INT,
+    AccountType VARCHAR(20),
+    Balance DECIMAL(10,2),
+    FOREIGN KEY (CustomerID) 
+    REFERENCES Customers(CustomerID),
+    FOREIGN KEY (BranchID)
+    REFERENCES Branches(BranchID)
+);
+
+SELECT * FROM HighValAccounts;
+
+INSERT INTO HighValAccounts(AccountID,CustomerID,BranchID,AccountType,Balance) 
+SELECT AccountID,CustomerID,BranchID,AccountType,Balance FROM Accounts
+WHERE Balance > (
+	SELECT AVG(Balance)
+    FROM Accounts
+);
+
+-- 36.	Create a HighBalanceCustomers table and insert customers whose total account balance is greater than ₹50,000. 
+SELECT * FROM Accounts;
+
+CREATE TABLE HighBalanceCustomers(
+	CustomerID INT,
+    TotalBalance DECIMAL(10,2)
+);
+DROP TABLE HighBalanceCustomers;
+
+INSERT INTO HighBalanceCustomers(CustomerID,TotalBalance)
+SELECT CustomerID,TotalBalance 
+FROM (SELECT CustomerID,SUM(Balance) AS TotalBalance
+	FROM Accounts
+	GROUP BY CustomerID) AS CustomerBalance
+WHERE TotalBalance > 50000;
+
+SELECT * FROM HighBalanceCustomers;
+
+-- SQL Views :
+-- virtual table create hota hai 
+CREATE VIEW PremiumAccounts AS 
+SELECT AccountID,AccountType,Balance,CustomerId
+FROM Accounts
+WHERE Balance > 50000;
+
+SELECT * FROM PremiumAccounts
+WHERE AccountType = 'Savings';
+
+-- To show transaction details :
+SELECT * FROM transactions;
+SELECT * FROM Accounts;
+SELECT * FROM PremiumAccounts;
+
+CREATE OR REPLACE VIEW PremiumAccounts AS
+SELECT a.AccountID,t.transactionID,a.AccountType,a.Balance,a.CustomerID
+FROM Accounts a
+INNER JOIN Transactions t 
+ON 
+a.AccountID = t.AccountID
+WHERE a.Balance > 50000;
+
+SELECT * FROM PremiumAccounts;
+
+CREATE OR REPLACE VIEW PremiumAccounts AS
+SELECT a.AccountID,t.TransactionID,a.AccountType,a.Balance,a.CustomerID
+FROM Accounts a 
+INNER JOIN Transactions t 
+ON 
+a.AccountID = t.AccountID
+WHERE a.Balance > 50000
+ORDER BY a.Balance DESC
+LIMIT 2;
+
+SELECT * FROM PremiumAccounts;
+SELECT DISTINCT Balance,accountID FROM Accounts;
+
+-- names bhi display karna with joins for the above question
+
+-- Windows Function :
+-- 1. Sum() Over()
+SELECT * FROM Accounts;
+
+SELECT AVG(Balance) 
+FROM Accounts;
+
+SELECT AccountId,AccountType,balance,
+AVG(Balance) OVER() AS TotalAvgBal
+FROM Accounts;
+
+-- 2. Partition By 
+SELECT AccountID,AccountType,balance,
+AVG(Balance) OVER(PARTITION BY AccountType) AS TotalAvgBalance 
+FROM Accounts;
+
+-- 3. Order By 
+SELECT AccountID,AccountType,balance,
+AVG(balance) OVER(PARTITION BY AccountType ORDER BY Balance DESC) AS TotalAvgBalance
+FROM Accounts; 
+
+-- 4. Row Number:
+SELECT AccountID,AccountType,Balance,
+ROW_NUMBER() OVER() AS RowNo,
+AVG(Balance) OVER() AS TotalAvgbalance
+FROM Accounts;
+
+-- 5. Rank:  this will skip repeated things 
+SELECT AccountID,AccountType,Balance,
+RANK() OVER(Order By Balance DESC) Ranks
+FROM Accounts; 
+
+-- 6. Dense Rank it will not skip 
+SELECT AccountID,AccountType,Balance,
+dense_rank() OVER(ORDER BY Balance DESC) RankS
+FROM Accounts; 
