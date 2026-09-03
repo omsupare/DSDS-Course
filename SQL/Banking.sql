@@ -1355,3 +1355,5 @@ FROM Accounts;
 SELECT AccountID,AccountType,Balance,
 dense_rank() OVER(ORDER BY Balance DESC) RankS
 FROM Accounts; 
+
+SELECT abs(-450)
