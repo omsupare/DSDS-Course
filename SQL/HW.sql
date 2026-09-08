@@ -1234,6 +1234,366 @@ a.branchID = b.branchID
 GROUP BY b.branchID;
 
 -- Part 7 — INNER JOIN + GROUP BY + HAVING
+-- Q38.
+-- Find customers whose total account balance is greater than ₹40,000.
+-- You need:
+-- JOIN
+-- GROUP BY
+-- SUM()
+-- HAVING
+SELECT * FROM Accounts;
+SELECT c.customerID,SUM(a.balance) AS Total_Bal
+FROM Customers c 
+INNER JOIN Accounts a 
+ON
+c.customerID = a.customerID
+GROUP BY c.customerID
+ORDER BY c.customerID;
+
+-- Q39.Find account types having an average balance greater than ₹30,000.
+SELECT * FROM Accounts;
+SELECT AccountType,AVG(Balance) AS Avg_Bal
+FROM Accounts
+GROUP BY AccountType
+HAVING Avg_Bal > 30000;
+
+-- Q40.Find branches having more than 2 accounts.
+SELECT * 
+FROM Branches;
+
+SELECT b.BranchName,COUNT(a.BranchID) AS NumOfAcc
+FROM Branches b 
+INNER JOIN Accounts a 
+ON
+b.branchID = a.branchID
+GROUP BY b.BranchName;
+
+-- Q41.Find branches whose total account balance is greater than ₹50,000.
+SELECT b.BranchName,SUM(a.balance) AS Total_Bal
+FROM Branches b 
+INNER JOIN Accounts a 
+ON 
+b.branchID = a.branchID
+GROUP BY b.BranchName
+HAVING Total_Bal > 50000;
+
+-- Q42.Find account types having at least 3 accounts.   -- asise questions aa skte tumne where kyu nhi use kia having ki jagah
+SELECT AccountType,COUNT(AccountID) AS NumOfAcc
+FROM Accounts
+GROUP BY AccountType
+HAVING NumOfAcc > 3;
+
+-- Q43.Find customers who have more than one account.
+-- This is particularly useful for understanding why HAVING is different from WHERE.
+
+SELECT c.firstName,COUNT(a.accountID) AS NumOfAcc
+FROM Customers c 
+INNER JOIN Accounts a 
+ON
+c.customerID = a.customerID
+GROUP BY c.firstName
+HAVING NumOfAcc > 1;
+
+-- Part 8 — INNER JOIN: Customers + Accounts + Branches
+-- Now move to 3-table JOINs.
+-- Q44.
+-- Display:
+-- •	Customer name 
+-- •	Account ID 
+-- •	Account type 
+-- •	Balance 
+-- •	Branch name 
+
+SELECT c.firstName,a.accountID,a.accountType,a.balance,b.branchName
+FROM Customers c 
+INNER JOIN Accounts a 
+ON
+c.customerId = a.customerID
+INNER JOIN Branches b 
+ON
+b.branchID = a.branchID;
+
+-- Q45.Display all Savings account customers along with their branch name.
+SELECT c.firstName,a.AccountType,b.branchName
+FROM Accounts a 
+INNER JOIN Branches b 
+ON
+b.branchID = a.branchID
+INNER JOIN Customers c
+ON 
+c.customerID = a.customerID; 
+
+-- Q46.Display customers belonging to the Sitabuldi Branch.Use: WHERE
+SELECT c.firstName,b.branchAddress
+FROM Customers c 
+INNER JOIN Accounts a 
+ON
+c.customerID = a.customerID
+INNER JOIN Branches b 
+ON
+b.branchID = a.branchID
+WHERE b.branchAddress = 'Sitabuldi';
+
+-- Q47.
+-- Display customers belonging to either:
+-- •	Sitabuldi Branch 
+-- •	Dharampeth Branch 
+-- Use IN.   -- isme bhi sir savings aur current ko separate krne bol skte hai
+SELECT * FROM Branches;
+SELECT * FROM Customers;
+SELECT * FROM Accounts;
+
+SELECT c.firstName,b.branchAddress
+FROM Customers c 
+INNER JOIN Accounts a 
+ON 
+c.customerID = a.customerID
+INNER JOIN Branches b 
+ON
+b.branchID = a.branchID
+WHERE BranchAddress IN ('Dharampeth','Sitabuldi');
+ 
+-- Q48.Display customers who do not belong to the Sitabuldi Branch.
+-- Use NOT IN.
+SELECT * FROM Customers;
+SELECT * FROM Accounts;
+
+SELECT c.firstName,b.branchAddress 
+FROM Customers c 
+INNER JOIN Accounts a 
+ON 
+c.customerID = a.customerID
+INNER JOIN Branches b 
+ON 
+b.branchID = a.branchID
+WHERE b.branchAddress NOT IN ('Sitabuldi');
+
+-- Q49.Display customers whose branch name starts with 'P'.
+-- Use LIKE.
+SELECT * FROM Branches;
+
+SELECT c.firstName,b.branchName
+FROM Customers c 
+INNER JOIN Accounts a 
+ON 
+c.customerID = a.customerID
+INNER JOIN Branches b 
+ON
+b.branchID = a.branchID
+WHERE b.BranchName LIKE 'P%';
+
+-- Q50.
+-- Display:
+-- Customer Name
+-- Branch Name
+-- Account Type
+-- Balance
+-- for accounts having balance between 20,000 and 60,000.
+
+SELECT c.firstName,b.branchName,a.accountType,a.balance
+FROM Customers c 
+INNER JOIN Accounts a 
+ON 
+c.customerID = a.customerID
+INNER JOIN Branches b 
+ON 
+b.branchID = a.branchID
+WHERE a.Balance BETWEEN 20000 AND 60000;
+
+-- Part 9 — INNER JOIN: Customers + Accounts + Transactions
+-- Relationship:
+-- Customers
+--     |
+--  Accounts
+--     |
+-- Transactions
+
+SELECT * FROM Transactions;
+
+-- Q51.
+-- Display:
+-- •	Customer name 
+-- •	Account ID 
+-- •	Transaction ID 
+-- •	Transaction date 
+-- •	Transaction type 
+-- •	Amount
+
+SELECT c.firstName,a.accountID,t.transactionID,t.transactionDate,t.transactionType,t.amount
+FROM Customers c 
+INNER JOIN Accounts a 
+ON
+c.customerID = a.customerID
+INNER JOIN Transactions t 
+ON 
+a.accountID = t.accountID;
+
+-- Q52.Display all Deposit transactions along with the customer's name.
+SELECT * FROM Customers;
+SELECT c.firstName,t.transactionType
+FROM customers c 
+INNER JOIN Accounts a 
+ON 
+a.customerID = c.customerID
+INNER JOIN transactions t 
+ON 
+a.accountID = t.accountID
+WHERE t.TransactionType = 'Deposit';
+ 
+-- Q53.Display all Withdrawal transactions greater than 2,000 along with the customer name.
+SELECT * FROM Transactions;
+
+SELECT c.firstName,t.TransactionType,t.amount 
+FROM Customers c 
+INNER JOIN Accounts a 
+ON
+a.customerID = c.customerID
+INNER JOIN Transactions t 
+ON 
+a.accountID = t.accountID
+WHERE t.amount > 2000 AND t.TransactionType = 'Withdrawal';
+
+-- Q54.
+-- Display transactions between:
+-- 2025-01-01
+-- and
+-- 2025-02-28
+-- along with customer name.
+
+SELECT * FROM Transactions;
+
+SELECT c.firstName,t.transactionDate
+FROM Customers c 
+INNER JOIN Accounts a 
+ON 
+c.customerID = a.customerID
+INNER JOIN Transactions t 
+ON 
+a.accountID = t.accountID
+WHERE t.transactionDate BETWEEN '2025-01-01' AND '2025-02-28';
+
+-- Q55.Display transactions where the amount is between 2,000 and 10,000. 
+SELECT * FROM Transactions;
+SELECT *
+FROM transactions 
+WHERE Amount BETWEEN 2000 AND 10000;
+
+-- Q56.Display transactions performed by customers whose first name starts with 'P'.
+SELECT c.firstName,t.amount
+FROM Customers c 
+INNER JOIN Accounts a 
+ON 
+c.customerID = a.customerID 
+INNER JOIN Transactions t 
+ON 
+a.accountID = t.accountID
+WHERE c.firstName LIKE 'P%';
+
+-- Part 10 — INNER JOIN + Transactions + GROUP BY
+-- This is a very good level for students.
+-- Q57.
+-- Find the total transaction amount for each customer.
+-- Output:
+-- Customer Name
+-- Total Transaction Amount
+
+SELECT c.customerID,SUM(t.amount) AS TotalTransactionAmount
+FROM Customers c 
+INNER JOIN Accounts a 
+ON 
+c.customerID = a.customerID
+INNER JOIN Transactions t 
+ON 
+a.accountID = t.accountID
+GROUP BY c.customerID
+ORDER BY c.customerID;
+
+-- Q58.Find the average transaction amount for each customer.
+SELECT c.customerID,AVG(t.amount) AS AvgAmount
+FROM customers c 
+INNER JOIN Accounts a 
+ON 
+c.customerID = a.customerID
+INNER JOIN Transactions t 
+ON 
+a.accountID = t.accountID
+GROUP BY c.customerID;
+
+-- Q59.Find the number of transactions performed by each customer.
+SELECT c.customerID,COUNT(t.transactionID) AS NumOfTransactions
+FROM Customers c 
+INNER JOIN Accounts a 
+ON 
+c.customerID = a.customerID
+INNER JOIN Transactions t 
+ON 
+a.accountID = t.accountID
+GROUP BY c.customerID;
+
+-- Q60.Find the total Deposit amount for each customer.
+SELECT * FROM Transactions;
+SELECT c.customerID,SUM(t.amount) AS TotalDepositAmount
+FROM Customers c 
+INNER JOIN Accounts a 
+ON 
+c.customerID = a.customerID
+INNER JOIN Transactions t 
+ON 
+a.accountID = t.accountID
+WHERE t.transactionType = 'Deposit'
+GROUP BY c.customerID;
+
+-- Q61.Find the total Withdrawal amount for each customer.
+
+SELECT c.customerID,SUM(t.amount) AS TotalWithdrawalAmount
+FROM customers c 
+INNER JOIN Accounts a 
+ON 
+c.customerID = a.customerID
+INNER JOIN Transactions t 
+ON 
+a.accountID = t.accountID
+WHERE t.transactionType = 'Withdrawal'
+GROUP BY c.customerID;
+
+-- Q62.
+-- Find the total Deposit and Withdrawal amount for each customer.
+-- Output:
+-- Customer Name
+-- Transaction Type
+-- Total Amount
+SELECT c.firstName,t.transactionType,SUM(t.amount) AS TotalAmount 
+FROM customers c 
+INNER JOIN Accounts a 
+ON
+c.customerID = a.customerID
+INNER JOIN Transactions t 
+ON 
+a.accountID = t.accountID
+WHERE (t.transactionType = 'Deposit') OR (t.transactionType = 'Withdrawal')
+GROUP BY c.firstName,t.transactionType;
+
+
+
+
+
+ 
+ 
+
+ 
+
+
+ 
+ 
+  
+
+ 
+
+
+ 
+ 
+
+
 
 
 
