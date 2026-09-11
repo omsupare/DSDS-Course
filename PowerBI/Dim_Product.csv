@@ -1,0 +1,201 @@
+Product_ID,Category,Sub_Category,Brand,Product_Name,Unit_Price,Launch_Year
+PROD1,Furniture,Binders,BrandC,Product_1,1547.53,2023
+PROD2,Technology,Storage,BrandA,Product_2,153.53,2020
+PROD3,Furniture,Storage,BrandC,Product_3,1120.65,2017
+PROD4,Furniture,Binders,BrandA,Product_4,1611.94,2022
+PROD5,Furniture,Chairs,BrandC,Product_5,1316.69,2020
+PROD6,Office Supplies,Chairs,BrandA,Product_6,1866.32,2020
+PROD7,Office Supplies,Phones,BrandC,Product_7,195.73,2022
+PROD8,Technology,Chairs,BrandC,Product_8,589.77,2017
+PROD9,Office Supplies,Storage,BrandB,Product_9,1842.51,2015
+PROD10,Furniture,Binders,BrandA,Product_10,1541.76,2023
+PROD11,Office Supplies,Phones,BrandA,Product_11,1219.49,2018
+PROD12,Technology,Chairs,BrandA,Product_12,1674.29,2017
+PROD13,Office Supplies,Chairs,BrandA,Product_13,1797.28,2022
+PROD14,Furniture,Storage,BrandC,Product_14,1946.8,2023
+PROD15,Furniture,Phones,BrandA,Product_15,1997.11,2018
+PROD16,Technology,Phones,BrandA,Product_16,322.32,2020
+PROD17,Office Supplies,Phones,BrandB,Product_17,187.56,2015
+PROD18,Technology,Storage,BrandB,Product_18,193.26,2021
+PROD19,Furniture,Chairs,BrandA,Product_19,78.75,2015
+PROD20,Furniture,Storage,BrandA,Product_20,1945.05,2023
+PROD21,Technology,Binders,BrandB,Product_21,234.8,2016
+PROD22,Technology,Chairs,BrandC,Product_22,1691.39,2021
+PROD23,Furniture,Phones,BrandA,Product_23,1386.09,2018
+PROD24,Furniture,Phones,BrandA,Product_24,1000.74,2019
+PROD25,Office Supplies,Binders,BrandB,Product_25,726.06,2023
+PROD26,Furniture,Binders,BrandC,Product_26,739.61,2022
+PROD27,Technology,Phones,BrandA,Product_27,544.99,2020
+PROD28,Technology,Binders,BrandA,Product_28,1826.49,2020
+PROD29,Furniture,Storage,BrandC,Product_29,1465.0,2017
+PROD30,Office Supplies,Binders,BrandC,Product_30,100.56,2015
+PROD31,Furniture,Chairs,BrandB,Product_31,949.97,2021
+PROD32,Furniture,Phones,BrandA,Product_32,598.54,2015
+PROD33,Office Supplies,Storage,BrandB,Product_33,106.48,2021
+PROD34,Office Supplies,Storage,BrandC,Product_34,1775.13,2019
+PROD35,Furniture,Storage,BrandB,Product_35,1553.46,2020
+PROD36,Office Supplies,Chairs,BrandA,Product_36,692.98,2020
+PROD37,Furniture,Phones,BrandC,Product_37,1603.29,2017
+PROD38,Furniture,Phones,BrandB,Product_38,683.04,2015
+PROD39,Furniture,Binders,BrandC,Product_39,650.37,2021
+PROD40,Furniture,Storage,BrandA,Product_40,1859.81,2017
+PROD41,Office Supplies,Phones,BrandB,Product_41,1954.99,2015
+PROD42,Office Supplies,Chairs,BrandB,Product_42,1070.93,2017
+PROD43,Furniture,Binders,BrandC,Product_43,1906.27,2015
+PROD44,Technology,Binders,BrandA,Product_44,1781.59,2022
+PROD45,Technology,Chairs,BrandB,Product_45,1060.16,2020
+PROD46,Technology,Storage,BrandC,Product_46,776.86,2019
+PROD47,Office Supplies,Chairs,BrandB,Product_47,1435.19,2017
+PROD48,Office Supplies,Chairs,BrandB,Product_48,938.5,2018
+PROD49,Technology,Chairs,BrandB,Product_49,1230.17,2022
+PROD50,Technology,Phones,BrandA,Product_50,1981.29,2019
+PROD51,Furniture,Phones,BrandB,Product_51,1559.14,2018
+PROD52,Office Supplies,Storage,BrandC,Product_52,701.84,2019
+PROD53,Technology,Chairs,BrandB,Product_53,223.55,2019
+PROD54,Technology,Chairs,BrandA,Product_54,410.57,2022
+PROD55,Technology,Binders,BrandC,Product_55,1077.36,2019
+PROD56,Technology,Phones,BrandA,Product_56,863.35,2020
+PROD57,Technology,Phones,BrandB,Product_57,1611.29,2022
+PROD58,Office Supplies,Phones,BrandA,Product_58,1869.74,2018
+PROD59,Office Supplies,Storage,BrandC,Product_59,396.84,2015
+PROD60,Technology,Chairs,BrandB,Product_60,1727.13,2017
+PROD61,Technology,Storage,BrandA,Product_61,1916.92,2016
+PROD62,Office Supplies,Chairs,BrandC,Product_62,1920.97,2019
+PROD63,Furniture,Storage,BrandC,Product_63,123.83,2019
+PROD64,Furniture,Storage,BrandC,Product_64,162.29,2018
+PROD65,Technology,Storage,BrandB,Product_65,61.3,2018
+PROD66,Furniture,Binders,BrandC,Product_66,659.73,2020
+PROD67,Office Supplies,Binders,BrandC,Product_67,158.61,2021
+PROD68,Technology,Binders,BrandB,Product_68,623.03,2023
+PROD69,Technology,Phones,BrandB,Product_69,744.23,2017
+PROD70,Furniture,Binders,BrandA,Product_70,1909.67,2023
+PROD71,Furniture,Binders,BrandB,Product_71,980.05,2018
+PROD72,Furniture,Phones,BrandA,Product_72,592.56,2018
+PROD73,Office Supplies,Phones,BrandC,Product_73,1030.86,2017
+PROD74,Furniture,Storage,BrandA,Product_74,1304.55,2021
+PROD75,Furniture,Phones,BrandB,Product_75,266.93,2023
+PROD76,Office Supplies,Phones,BrandB,Product_76,1528.22,2022
+PROD77,Office Supplies,Storage,BrandC,Product_77,1711.29,2021
+PROD78,Furniture,Binders,BrandA,Product_78,1696.29,2021
+PROD79,Office Supplies,Storage,BrandB,Product_79,1786.49,2020
+PROD80,Office Supplies,Storage,BrandB,Product_80,794.59,2022
+PROD81,Furniture,Storage,BrandA,Product_81,915.42,2019
+PROD82,Office Supplies,Storage,BrandB,Product_82,248.08,2017
+PROD83,Office Supplies,Storage,BrandC,Product_83,490.32,2019
+PROD84,Technology,Chairs,BrandA,Product_84,1944.07,2019
+PROD85,Office Supplies,Phones,BrandA,Product_85,605.02,2016
+PROD86,Office Supplies,Phones,BrandC,Product_86,1819.42,2016
+PROD87,Office Supplies,Storage,BrandA,Product_87,1786.58,2023
+PROD88,Technology,Storage,BrandC,Product_88,1848.88,2021
+PROD89,Technology,Phones,BrandB,Product_89,354.49,2018
+PROD90,Technology,Chairs,BrandC,Product_90,1765.46,2020
+PROD91,Technology,Binders,BrandB,Product_91,1282.39,2015
+PROD92,Furniture,Binders,BrandA,Product_92,460.72,2019
+PROD93,Technology,Chairs,BrandA,Product_93,722.98,2022
+PROD94,Technology,Storage,BrandA,Product_94,361.84,2019
+PROD95,Furniture,Phones,BrandC,Product_95,916.48,2020
+PROD96,Furniture,Binders,BrandC,Product_96,213.36,2017
+PROD97,Office Supplies,Phones,BrandA,Product_97,372.37,2016
+PROD98,Technology,Storage,BrandC,Product_98,434.53,2023
+PROD99,Technology,Phones,BrandA,Product_99,1397.5,2020
+PROD100,Furniture,Phones,BrandC,Product_100,1168.92,2015
+PROD101,Furniture,Binders,BrandB,Product_101,1752.98,2017
+PROD102,Technology,Binders,BrandB,Product_102,527.04,2019
+PROD103,Office Supplies,Phones,BrandC,Product_103,1277.74,2015
+PROD104,Office Supplies,Chairs,BrandC,Product_104,117.14,2018
+PROD105,Office Supplies,Binders,BrandC,Product_105,1056.59,2019
+PROD106,Furniture,Binders,BrandC,Product_106,1733.29,2015
+PROD107,Office Supplies,Storage,BrandA,Product_107,1969.05,2017
+PROD108,Office Supplies,Storage,BrandB,Product_108,69.25,2019
+PROD109,Furniture,Binders,BrandA,Product_109,543.04,2016
+PROD110,Furniture,Chairs,BrandB,Product_110,486.51,2021
+PROD111,Furniture,Storage,BrandC,Product_111,142.7,2015
+PROD112,Furniture,Storage,BrandB,Product_112,69.84,2023
+PROD113,Technology,Storage,BrandC,Product_113,1005.88,2022
+PROD114,Furniture,Binders,BrandC,Product_114,138.69,2015
+PROD115,Technology,Chairs,BrandC,Product_115,592.74,2016
+PROD116,Office Supplies,Phones,BrandB,Product_116,1297.95,2018
+PROD117,Furniture,Chairs,BrandC,Product_117,624.65,2022
+PROD118,Office Supplies,Chairs,BrandB,Product_118,575.83,2016
+PROD119,Office Supplies,Storage,BrandA,Product_119,1201.57,2018
+PROD120,Furniture,Chairs,BrandC,Product_120,792.04,2016
+PROD121,Office Supplies,Binders,BrandA,Product_121,1419.92,2016
+PROD122,Technology,Binders,BrandA,Product_122,1017.44,2021
+PROD123,Technology,Binders,BrandC,Product_123,1284.76,2022
+PROD124,Office Supplies,Chairs,BrandC,Product_124,739.12,2023
+PROD125,Office Supplies,Phones,BrandC,Product_125,609.74,2016
+PROD126,Office Supplies,Chairs,BrandB,Product_126,309.75,2016
+PROD127,Technology,Phones,BrandA,Product_127,1877.31,2023
+PROD128,Technology,Binders,BrandC,Product_128,1619.43,2017
+PROD129,Office Supplies,Phones,BrandB,Product_129,1879.16,2015
+PROD130,Office Supplies,Binders,BrandC,Product_130,411.49,2017
+PROD131,Office Supplies,Binders,BrandC,Product_131,1869.65,2017
+PROD132,Furniture,Phones,BrandA,Product_132,1874.72,2023
+PROD133,Office Supplies,Phones,BrandB,Product_133,602.91,2021
+PROD134,Technology,Chairs,BrandA,Product_134,585.54,2022
+PROD135,Technology,Binders,BrandB,Product_135,1125.29,2016
+PROD136,Technology,Phones,BrandA,Product_136,411.31,2023
+PROD137,Technology,Binders,BrandB,Product_137,912.1,2017
+PROD138,Furniture,Chairs,BrandB,Product_138,411.37,2017
+PROD139,Furniture,Phones,BrandA,Product_139,1897.38,2018
+PROD140,Furniture,Storage,BrandC,Product_140,1012.96,2020
+PROD141,Office Supplies,Binders,BrandB,Product_141,1929.64,2017
+PROD142,Office Supplies,Binders,BrandC,Product_142,1307.64,2017
+PROD143,Furniture,Binders,BrandC,Product_143,994.42,2018
+PROD144,Technology,Phones,BrandC,Product_144,1937.01,2023
+PROD145,Office Supplies,Chairs,BrandB,Product_145,329.22,2022
+PROD146,Furniture,Storage,BrandB,Product_146,1283.04,2019
+PROD147,Office Supplies,Binders,BrandC,Product_147,1340.68,2016
+PROD148,Technology,Storage,BrandA,Product_148,895.99,2020
+PROD149,Furniture,Chairs,BrandB,Product_149,165.75,2016
+PROD150,Office Supplies,Binders,BrandA,Product_150,1010.81,2022
+PROD151,Furniture,Phones,BrandC,Product_151,957.01,2016
+PROD152,Furniture,Storage,BrandB,Product_152,1623.16,2015
+PROD153,Furniture,Binders,BrandA,Product_153,550.49,2021
+PROD154,Technology,Chairs,BrandA,Product_154,813.29,2022
+PROD155,Office Supplies,Binders,BrandC,Product_155,518.34,2015
+PROD156,Office Supplies,Phones,BrandB,Product_156,1388.56,2023
+PROD157,Furniture,Binders,BrandA,Product_157,1980.27,2023
+PROD158,Furniture,Storage,BrandC,Product_158,395.99,2020
+PROD159,Furniture,Chairs,BrandA,Product_159,1651.82,2021
+PROD160,Office Supplies,Phones,BrandB,Product_160,500.43,2015
+PROD161,Furniture,Binders,BrandA,Product_161,163.05,2018
+PROD162,Technology,Phones,BrandC,Product_162,320.69,2021
+PROD163,Office Supplies,Phones,BrandA,Product_163,1873.55,2019
+PROD164,Furniture,Binders,BrandA,Product_164,1782.66,2018
+PROD165,Furniture,Binders,BrandC,Product_165,614.06,2020
+PROD166,Furniture,Binders,BrandB,Product_166,1898.14,2020
+PROD167,Office Supplies,Binders,BrandB,Product_167,1707.36,2019
+PROD168,Technology,Phones,BrandC,Product_168,897.58,2017
+PROD169,Technology,Storage,BrandC,Product_169,962.7,2022
+PROD170,Technology,Phones,BrandC,Product_170,1278.21,2016
+PROD171,Furniture,Storage,BrandC,Product_171,358.16,2023
+PROD172,Furniture,Chairs,BrandA,Product_172,78.83,2020
+PROD173,Furniture,Storage,BrandB,Product_173,567.75,2020
+PROD174,Furniture,Storage,BrandB,Product_174,80.12,2022
+PROD175,Technology,Chairs,BrandB,Product_175,1365.27,2023
+PROD176,Office Supplies,Binders,BrandC,Product_176,1125.36,2023
+PROD177,Technology,Storage,BrandC,Product_177,677.21,2022
+PROD178,Technology,Binders,BrandC,Product_178,1571.39,2018
+PROD179,Office Supplies,Chairs,BrandA,Product_179,334.28,2015
+PROD180,Office Supplies,Storage,BrandB,Product_180,527.52,2019
+PROD181,Office Supplies,Phones,BrandC,Product_181,620.01,2023
+PROD182,Office Supplies,Storage,BrandC,Product_182,432.07,2018
+PROD183,Technology,Phones,BrandB,Product_183,221.48,2023
+PROD184,Furniture,Binders,BrandC,Product_184,1746.45,2017
+PROD185,Office Supplies,Chairs,BrandB,Product_185,221.97,2023
+PROD186,Technology,Binders,BrandA,Product_186,1383.24,2023
+PROD187,Office Supplies,Storage,BrandA,Product_187,284.78,2020
+PROD188,Technology,Chairs,BrandC,Product_188,70.86,2022
+PROD189,Technology,Chairs,BrandB,Product_189,1136.67,2016
+PROD190,Furniture,Chairs,BrandA,Product_190,1818.86,2017
+PROD191,Technology,Storage,BrandB,Product_191,1727.89,2021
+PROD192,Technology,Storage,BrandC,Product_192,709.98,2023
+PROD193,Office Supplies,Chairs,BrandA,Product_193,102.96,2019
+PROD194,Office Supplies,Storage,BrandC,Product_194,1611.68,2015
+PROD195,Furniture,Phones,BrandA,Product_195,1621.67,2017
+PROD196,Furniture,Storage,BrandC,Product_196,1743.55,2023
+PROD197,Furniture,Binders,BrandA,Product_197,1355.81,2020
+PROD198,Technology,Chairs,BrandB,Product_198,1625.17,2019
+PROD199,Furniture,Chairs,BrandC,Product_199,1800.12,2022
+PROD200,Technology,Chairs,BrandB,Product_200,934.97,2021
