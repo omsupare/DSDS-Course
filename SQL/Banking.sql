@@ -102,10 +102,10 @@ DESC customers;
 ALTER TABLE Customers
 ADD CONSTRAINT uq_Email UNIQUE(Email);
 
-ALTER TABLE Branches
+ALTER TABLE Branches   -- yeh hamri mistake thi 
 MODIFY BranchID VARCHAR(100) PRIMARY KEY;
 
-ALTER TABLE Accounts
+ALTER TABLE Accounts  -- wrong
 ADD BranchID VARCHAR(100);
 
 ALTER TABLE Accounts DROP COLUMN BranchID;
@@ -153,7 +153,7 @@ PRIMARY KEY (LoanID);
 ALTER TABLE Loans
 ADD customerID INT;
 
-ALTER TABLE Accounts DROP FOREIGN KEY FK_CustomerID;
+ALTER TABLE Accounts DROP FOREIGN KEY FK_CustomerID;  -- shyd mene galti kari thi 
 
 ALTER TABLE Accounts
 DROP COLUMN CustomerID;

@@ -86,3 +86,78 @@ ALTER TABLE accounts1
 ADD CONSTRAINT FK_Accounts_Customers
 FOREIGN KEY (CustomerID)
 REFERENCES Customers1(CustomerID);
+
+DESC Accounts1;
+
+ALTER TABLE Accounts1
+ADD CONSTRAINT PK_AccountID PRIMARY KEY (AccountID);
+
+DESC Customers1;
+
+ALTER TABLE customers1
+MODIFY FirstName VARCHAR(50) NOT NULL;
+
+ALTER TABLE Customers1
+ADD CONSTRAINT uq_Email UNIQUE(Email);
+
+DESC Branches1;
+
+ALTER TABLE Branches1 
+MODIFY BranchID INT PRIMARY KEY;
+
+DESC Accounts1;
+
+-- phele column banaya hamne  
+ALTER TABLE accounts1
+ADD BranchID INT;
+
+ALTER TABLE Accounts1
+DROP COLUMN BranchID;
+
+ALTER TABLE Accounts1 
+ADD CONSTRAINT FK_BranchID
+FOREIGN KEY (BranchID)
+REFERENCES Branches1(BranchID);
+
+DESC Customers1;
+DESC Branches1;
+DESC Accounts1;
+DESC Transactions1;
+
+ALTER TABLE Transactions1
+MODIFY TransactionID INT PRIMARY KEY;
+
+ALTER TABLE Transactions1
+ADD AccountID INT;
+
+ALTER TABLE Accounts1
+ADD CONSTRAINT PK_AccountID PRIMARY KEY(AccountID);
+
+ALTER TABLE Transactions1
+ADD CONSTRAINT FK_AccountID
+FOREIGN KEY (AccountID)
+REFERENCES Accounts1(AccountID);
+
+-- How to check constraint Names 
+SELECT
+	CONSTRAINT_NAME,
+    CONSTRAINT_TYPE
+FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+WHERE TABLE_SCHEMA = 'bankingdb1'
+AND TABLE_NAME = 'Accounts1';
+
+DESC Loans1;
+
+ALTER TABLE Loans1
+ADD CONSTRAINT PK_LoanID PRIMARY KEY(LoanID); 
+
+ALTER TABLE loans1
+ADD CustomerID INT;
+
+ALTER TABLE Loans1
+ADD CONSTRAINT FK_CustomerID
+FOREIGN KEY (CustomerID)
+REFERENCES Customers1(CustomerID);
+
+-- Normalization and Denormalization :
+ 

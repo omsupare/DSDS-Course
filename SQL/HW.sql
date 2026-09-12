@@ -1573,8 +1573,21 @@ a.accountID = t.accountID
 WHERE (t.transactionType = 'Deposit') OR (t.transactionType = 'Withdrawal')
 GROUP BY c.firstName,t.transactionType;
 
+CREATE TABLE Hello (
+	RollNo INT
+);
 
+SELECT COUNT(*)
+FROM Hello;
 
+SELECT COUNT(DISTINCT RollNo)
+FROM Hello;
+
+SELECT SYSDATE();
+SELECT current_time();
+SELECT NOW();
+
+SELECT ROUND(678.90,-1);
 
 
  
