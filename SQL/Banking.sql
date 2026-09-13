@@ -311,7 +311,6 @@ WHERE AccountType = 'Savings' OR Balance > 50000;
 
 
 -- In Operator  01-07-26 ke baad
-
 SELECT firstname, lastname, accountcreationdate
 FROM Customers
 WHERE AccountcreationDate > '2026-07-01';

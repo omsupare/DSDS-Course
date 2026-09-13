@@ -160,4 +160,133 @@ FOREIGN KEY (CustomerID)
 REFERENCES Customers1(CustomerID);
 
 -- Normalization and Denormalization :
- 
+
+INSERT INTO Customers1 
+(CustomerID, FirstName, LastName, Email, Phone, DateOfBirth)
+VALUES
+(101,'Rahul','sharma','rahul@gmail.com','9876543210','1998-04-15'); 
+
+INSERT INTO Customers1
+VALUES
+(102,'Ketan','Tiwari','ketan@gmail.com','8838938284','2026-08-04','2000-06-22');
+
+INSERT INTO Customers1
+VALUES
+(105,'Pranav','Roy','pranav@gmail.com','9876549125','2026-07-23','2002-01-05');
+
+SELECT * FROM Customers1;
+
+INSERT INTO Accounts1
+(AccountID, CustomerID, AccountType, Balance)
+VALUES
+(201,101,'Savings',25000);
+
+SELECT * FROM Accounts1;
+
+INSERT INTO Customers1 
+(CustomerID, FirstName, LastName, Email, Phone, AccountCreationDate, DateOfBirth)
+VALUES
+(103,'Neha','Singh','neha@gmail.com','9277476727','2026-08-03','1992-07-03'),
+(104,'Mukul','Jha','mukul@gmail.com','7929267534','2025-02-01','1995-11-06');
+
+UPDATE Customers1
+SET AccountCreationDate = '2025-06-29'
+WHERE CustomerID = '101';
+
+SELECT * FROM Customers1;
+
+INSERT INTO branches1 
+(BranchID, BranchName, BranchAddress, BranchPhone) 
+VALUES 
+(201, 'Principal Branch','Bajaj Nager',654321),
+(202, 'Gulshan Branch','Dharampeth',543289),
+(203, 'Dhantoli Branch','Sitabuldi',876549);
+
+INSERT INTO Loans1 
+(loanID, LoanAmount, InterestRate, StartDate, EndDate, CustomerID) 
+VALUES
+('20261239','150000.45', '00004.00', '2026-05-09', '2027-05-09', 102),
+('20241235','10000000.34', '00005.00', '2024-10-02', '2034-10-02', 101),
+('20261236','800000.21', '00003.00', '2026-02-04', '2027-02-04', 103),
+('20261237','500000.64', '00002.00', '2026-01-29', '2028-01-29', 105),
+('20261238','25000.12', '00001.00', '2026-03-02', '2026-8-02', 104);
+
+SELECT * FROM Loans1;
+SELECT * FROM Branches1;
+
+INSERT INTO Transactions1 
+(TransactionID,TransactionDate,Amount,TransactionType,AccountID) 
+VALUES
+(1001,'2026-08-04', 15000, 'Withdrawal',201);
+
+INSERT INTO accounts1(AccountID, AccountType, Balance, CustomerID) VALUES
+(202,'Current',50000,102),
+(203,'Savings',45000,103),
+(204,'Current',35000,104),
+(205,'Savings',60000,105);
+
+SELECT * FROM Accounts1;
+
+INSERT INTO Transactions1 (TransactionID, TransactionDate, Amount, TransactionType, AccountID) 
+VALUES
+(1002, '2026-08-04', 20000, 'Deposit', 201),
+(1003, '2026-08-05', 12000, 'Withdrawal', 202),
+(1004, '2026-08-05', 16000, 'Deposit', 203),
+(1005, '2026-08-06', 13000, 'Withdrawal', 204);
+
+SELECT * FROM Transactions1;
+
+UPDATE Accounts1
+SET BranchID = '201'
+WHERE AccountID = '101';
+
+UPDATE Accounts1
+SET BranchID = '202'
+WHERE AccountID = '202';
+
+UPDATE Accounts1
+SET BranchID = '203'
+WHERE AccountID = '203';
+
+UPDATE Accounts1
+SET BranchID = '202'
+WHERE AccountID = '204';
+
+UPDATE Accounts1
+SET BranchID = '201'
+WHERE AccountID = '205';
+
+SELECT * FROM Accounts1;
+
+UPDATE Accounts1
+SET Balance = 80000
+WHERE CustomerID = '101';
+
+SELECT * FROM Customers1;
+
+UPDATE accounts1
+SET balance = balance + 2000
+WHERE CustomerID = 101;
+
+UPDATE Customers1
+SET Email = 'rahulsharma@gmail.com',
+	Phone = '7843017486'
+WHERE CustomerID = '101';
+
+SELECT customerID,firstName,Phone
+FROM Customers1;
+
+SELECT *
+FROM Accounts1
+WHERE AccountType != 'Savings';
+
+SELECT * 
+FROM accounts1
+WHERE Balance <= 50000;
+
+SELECT * FROM Accounts1
+WHERE Balance > 50000 OR AccountType = 'Savings';
+
+SELECT firstName,lastName,AccountCreationDate
+FROM Customers1
+WHERE AccountCreationDate > '2026-07-01';
