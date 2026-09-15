@@ -1,0 +1,301 @@
+Customer_ID,Customer_Name,Segment,Customer_Age_Group,Gender,Loyalty_Status,Join_Date
+CUST1,Customer_1,Corporate,41-60,Male,Bronze,2022-12-06
+CUST2,Customer_2,Consumer,26-40,Female,Gold,2019-03-14
+CUST3,Customer_3,Consumer,60+,Female,Silver,2023-07-01
+CUST4,Customer_4,Corporate,26-40,Female,Gold,2018-04-17
+CUST5,Customer_5,Corporate,26-40,Male,Gold,2023-09-01
+CUST6,Customer_6,Consumer,18-25,Female,Bronze,2018-01-21
+CUST7,Customer_7,Consumer,26-40,Female,Silver,2018-09-23
+CUST8,Customer_8,Corporate,41-60,Male,Bronze,2019-07-09
+CUST9,Customer_9,Consumer,26-40,Female,Silver,2020-08-20
+CUST10,Customer_10,Corporate,41-60,Female,Bronze,2020-07-01
+CUST11,Customer_11,Consumer,41-60,Female,Silver,2021-01-06
+CUST12,Customer_12,Home Office,26-40,Female,Bronze,2023-09-22
+CUST13,Customer_13,Corporate,18-25,Male,Silver,2021-08-08
+CUST14,Customer_14,Home Office,26-40,Female,Silver,2023-02-11
+CUST15,Customer_15,Consumer,41-60,Male,Silver,2021-03-26
+CUST16,Customer_16,Home Office,60+,Female,Silver,2020-01-17
+CUST17,Customer_17,Corporate,41-60,Female,Bronze,2018-03-27
+CUST18,Customer_18,Home Office,18-25,Female,Bronze,2021-06-12
+CUST19,Customer_19,Consumer,18-25,Female,Bronze,2022-10-13
+CUST20,Customer_20,Consumer,18-25,Male,Silver,2019-01-28
+CUST21,Customer_21,Home Office,60+,Female,Bronze,2019-12-19
+CUST22,Customer_22,Consumer,41-60,Female,Gold,2021-07-22
+CUST23,Customer_23,Corporate,18-25,Female,Gold,2018-09-02
+CUST24,Customer_24,Home Office,60+,Male,Gold,2023-05-31
+CUST25,Customer_25,Home Office,60+,Male,Bronze,2019-12-25
+CUST26,Customer_26,Consumer,60+,Female,Bronze,2020-04-24
+CUST27,Customer_27,Corporate,26-40,Male,Gold,2020-01-15
+CUST28,Customer_28,Corporate,60+,Female,Gold,2018-12-22
+CUST29,Customer_29,Home Office,18-25,Female,Gold,2023-09-09
+CUST30,Customer_30,Consumer,41-60,Male,Bronze,2021-09-08
+CUST31,Customer_31,Home Office,41-60,Male,Gold,2020-11-22
+CUST32,Customer_32,Corporate,60+,Female,Bronze,2018-09-07
+CUST33,Customer_33,Corporate,18-25,Male,Gold,2023-06-04
+CUST34,Customer_34,Corporate,26-40,Male,Silver,2023-08-07
+CUST35,Customer_35,Corporate,26-40,Male,Silver,2020-07-12
+CUST36,Customer_36,Home Office,41-60,Male,Gold,2020-09-16
+CUST37,Customer_37,Corporate,26-40,Male,Bronze,2021-01-26
+CUST38,Customer_38,Corporate,60+,Male,Silver,2019-05-18
+CUST39,Customer_39,Consumer,41-60,Female,Silver,2020-04-15
+CUST40,Customer_40,Consumer,18-25,Female,Bronze,2021-09-20
+CUST41,Customer_41,Corporate,26-40,Female,Bronze,2020-04-11
+CUST42,Customer_42,Consumer,26-40,Male,Silver,2018-06-06
+CUST43,Customer_43,Consumer,18-25,Male,Gold,2022-09-06
+CUST44,Customer_44,Corporate,26-40,Female,Gold,2021-01-21
+CUST45,Customer_45,Home Office,60+,Male,Gold,2022-01-04
+CUST46,Customer_46,Corporate,60+,Female,Silver,2020-03-30
+CUST47,Customer_47,Consumer,26-40,Male,Silver,2022-10-10
+CUST48,Customer_48,Home Office,41-60,Male,Bronze,2020-08-29
+CUST49,Customer_49,Home Office,60+,Female,Bronze,2018-02-01
+CUST50,Customer_50,Corporate,41-60,Female,Silver,2020-01-11
+CUST51,Customer_51,Corporate,18-25,Female,Silver,2023-01-05
+CUST52,Customer_52,Corporate,41-60,Male,Silver,2022-06-08
+CUST53,Customer_53,Consumer,18-25,Female,Gold,2020-05-29
+CUST54,Customer_54,Consumer,41-60,Male,Gold,2018-03-16
+CUST55,Customer_55,Corporate,60+,Male,Bronze,2020-07-11
+CUST56,Customer_56,Consumer,18-25,Male,Silver,2022-10-31
+CUST57,Customer_57,Home Office,41-60,Female,Bronze,2018-07-05
+CUST58,Customer_58,Consumer,41-60,Female,Bronze,2023-11-18
+CUST59,Customer_59,Consumer,18-25,Female,Bronze,2022-01-12
+CUST60,Customer_60,Corporate,60+,Female,Silver,2023-01-05
+CUST61,Customer_61,Corporate,41-60,Male,Bronze,2020-07-03
+CUST62,Customer_62,Home Office,18-25,Female,Gold,2020-09-18
+CUST63,Customer_63,Consumer,60+,Male,Silver,2023-09-21
+CUST64,Customer_64,Consumer,41-60,Female,Silver,2020-05-13
+CUST65,Customer_65,Corporate,60+,Male,Silver,2023-01-24
+CUST66,Customer_66,Home Office,60+,Male,Silver,2019-11-14
+CUST67,Customer_67,Home Office,18-25,Male,Gold,2023-05-27
+CUST68,Customer_68,Corporate,26-40,Male,Silver,2022-05-20
+CUST69,Customer_69,Consumer,41-60,Female,Gold,2020-08-24
+CUST70,Customer_70,Home Office,26-40,Male,Gold,2020-10-11
+CUST71,Customer_71,Corporate,18-25,Male,Gold,2020-02-02
+CUST72,Customer_72,Home Office,60+,Male,Gold,2018-01-27
+CUST73,Customer_73,Corporate,41-60,Female,Bronze,2022-02-21
+CUST74,Customer_74,Consumer,41-60,Female,Silver,2020-08-14
+CUST75,Customer_75,Corporate,41-60,Female,Bronze,2018-09-11
+CUST76,Customer_76,Corporate,18-25,Female,Gold,2019-04-12
+CUST77,Customer_77,Home Office,26-40,Male,Bronze,2020-01-13
+CUST78,Customer_78,Consumer,41-60,Male,Gold,2021-10-25
+CUST79,Customer_79,Consumer,60+,Male,Gold,2022-03-03
+CUST80,Customer_80,Home Office,26-40,Female,Bronze,2019-10-26
+CUST81,Customer_81,Home Office,26-40,Male,Silver,2022-09-30
+CUST82,Customer_82,Corporate,26-40,Male,Gold,2021-09-29
+CUST83,Customer_83,Consumer,26-40,Male,Silver,2022-01-14
+CUST84,Customer_84,Home Office,18-25,Female,Gold,2022-12-17
+CUST85,Customer_85,Home Office,26-40,Female,Silver,2020-01-30
+CUST86,Customer_86,Home Office,41-60,Male,Bronze,2021-05-14
+CUST87,Customer_87,Consumer,26-40,Male,Gold,2023-03-28
+CUST88,Customer_88,Consumer,18-25,Male,Bronze,2022-11-15
+CUST89,Customer_89,Corporate,18-25,Female,Silver,2021-12-11
+CUST90,Customer_90,Corporate,41-60,Female,Silver,2023-04-25
+CUST91,Customer_91,Corporate,41-60,Male,Silver,2020-12-28
+CUST92,Customer_92,Consumer,60+,Female,Silver,2022-06-07
+CUST93,Customer_93,Consumer,26-40,Female,Bronze,2018-11-07
+CUST94,Customer_94,Corporate,18-25,Female,Bronze,2022-10-24
+CUST95,Customer_95,Corporate,18-25,Female,Gold,2019-12-16
+CUST96,Customer_96,Home Office,18-25,Female,Gold,2020-05-12
+CUST97,Customer_97,Consumer,41-60,Female,Bronze,2019-01-31
+CUST98,Customer_98,Corporate,60+,Male,Silver,2020-07-27
+CUST99,Customer_99,Home Office,41-60,Female,Silver,2021-11-19
+CUST100,Customer_100,Home Office,18-25,Female,Gold,2021-05-25
+CUST101,Customer_101,Consumer,26-40,Male,Gold,2020-11-14
+CUST102,Customer_102,Corporate,60+,Male,Bronze,2022-01-16
+CUST103,Customer_103,Corporate,26-40,Female,Bronze,2022-10-22
+CUST104,Customer_104,Consumer,26-40,Female,Silver,2019-09-26
+CUST105,Customer_105,Consumer,41-60,Female,Bronze,2023-12-30
+CUST106,Customer_106,Consumer,26-40,Female,Gold,2018-01-03
+CUST107,Customer_107,Home Office,26-40,Female,Gold,2018-08-23
+CUST108,Customer_108,Consumer,18-25,Female,Bronze,2021-03-26
+CUST109,Customer_109,Corporate,26-40,Male,Bronze,2023-09-15
+CUST110,Customer_110,Consumer,41-60,Male,Silver,2021-05-14
+CUST111,Customer_111,Corporate,18-25,Male,Gold,2018-06-24
+CUST112,Customer_112,Consumer,60+,Male,Bronze,2018-03-20
+CUST113,Customer_113,Consumer,18-25,Female,Silver,2019-09-10
+CUST114,Customer_114,Home Office,18-25,Female,Gold,2021-05-28
+CUST115,Customer_115,Consumer,41-60,Female,Bronze,2020-04-28
+CUST116,Customer_116,Corporate,60+,Female,Bronze,2020-02-29
+CUST117,Customer_117,Home Office,26-40,Female,Bronze,2023-06-08
+CUST118,Customer_118,Consumer,26-40,Female,Gold,2023-11-09
+CUST119,Customer_119,Corporate,26-40,Male,Silver,2018-01-10
+CUST120,Customer_120,Corporate,18-25,Male,Silver,2020-05-10
+CUST121,Customer_121,Consumer,18-25,Female,Silver,2019-08-21
+CUST122,Customer_122,Home Office,18-25,Female,Silver,2020-11-23
+CUST123,Customer_123,Consumer,41-60,Female,Bronze,2018-05-02
+CUST124,Customer_124,Consumer,26-40,Male,Bronze,2021-11-17
+CUST125,Customer_125,Consumer,41-60,Male,Bronze,2023-01-18
+CUST126,Customer_126,Consumer,60+,Female,Silver,2018-02-03
+CUST127,Customer_127,Corporate,60+,Female,Silver,2023-07-17
+CUST128,Customer_128,Home Office,41-60,Male,Bronze,2022-07-21
+CUST129,Customer_129,Consumer,18-25,Male,Silver,2020-05-17
+CUST130,Customer_130,Corporate,26-40,Male,Silver,2022-03-24
+CUST131,Customer_131,Consumer,60+,Male,Bronze,2020-04-07
+CUST132,Customer_132,Home Office,18-25,Female,Bronze,2021-12-20
+CUST133,Customer_133,Corporate,60+,Female,Gold,2023-01-18
+CUST134,Customer_134,Home Office,26-40,Male,Silver,2021-08-13
+CUST135,Customer_135,Consumer,41-60,Male,Gold,2020-06-09
+CUST136,Customer_136,Consumer,41-60,Male,Silver,2020-05-18
+CUST137,Customer_137,Home Office,18-25,Male,Silver,2023-03-02
+CUST138,Customer_138,Home Office,41-60,Female,Silver,2019-10-12
+CUST139,Customer_139,Home Office,60+,Male,Gold,2018-02-16
+CUST140,Customer_140,Consumer,41-60,Female,Bronze,2019-09-26
+CUST141,Customer_141,Corporate,41-60,Female,Silver,2019-07-25
+CUST142,Customer_142,Home Office,41-60,Male,Gold,2023-09-01
+CUST143,Customer_143,Home Office,18-25,Male,Bronze,2023-05-29
+CUST144,Customer_144,Home Office,26-40,Male,Silver,2021-07-04
+CUST145,Customer_145,Home Office,41-60,Male,Gold,2019-10-22
+CUST146,Customer_146,Consumer,60+,Male,Bronze,2018-05-28
+CUST147,Customer_147,Home Office,18-25,Female,Silver,2023-02-21
+CUST148,Customer_148,Corporate,18-25,Male,Bronze,2023-09-07
+CUST149,Customer_149,Corporate,26-40,Male,Gold,2020-01-17
+CUST150,Customer_150,Home Office,26-40,Female,Gold,2022-09-28
+CUST151,Customer_151,Consumer,26-40,Male,Gold,2021-01-24
+CUST152,Customer_152,Home Office,18-25,Male,Silver,2018-01-30
+CUST153,Customer_153,Consumer,41-60,Male,Gold,2018-10-06
+CUST154,Customer_154,Home Office,60+,Female,Bronze,2022-01-04
+CUST155,Customer_155,Corporate,41-60,Male,Silver,2018-09-05
+CUST156,Customer_156,Corporate,41-60,Female,Gold,2020-03-21
+CUST157,Customer_157,Corporate,18-25,Male,Silver,2020-06-27
+CUST158,Customer_158,Home Office,41-60,Male,Bronze,2019-08-18
+CUST159,Customer_159,Corporate,18-25,Male,Gold,2019-10-10
+CUST160,Customer_160,Corporate,60+,Female,Silver,2023-12-25
+CUST161,Customer_161,Consumer,60+,Female,Bronze,2021-09-03
+CUST162,Customer_162,Home Office,60+,Female,Bronze,2021-08-07
+CUST163,Customer_163,Consumer,60+,Female,Silver,2023-07-08
+CUST164,Customer_164,Corporate,60+,Male,Bronze,2018-09-09
+CUST165,Customer_165,Consumer,18-25,Male,Bronze,2018-05-12
+CUST166,Customer_166,Corporate,41-60,Male,Silver,2018-11-08
+CUST167,Customer_167,Corporate,60+,Female,Silver,2019-05-12
+CUST168,Customer_168,Consumer,26-40,Male,Silver,2020-08-22
+CUST169,Customer_169,Corporate,41-60,Female,Bronze,2023-08-26
+CUST170,Customer_170,Corporate,41-60,Male,Silver,2021-02-04
+CUST171,Customer_171,Corporate,18-25,Female,Bronze,2018-05-02
+CUST172,Customer_172,Home Office,41-60,Female,Silver,2019-06-23
+CUST173,Customer_173,Corporate,26-40,Male,Silver,2023-07-30
+CUST174,Customer_174,Consumer,41-60,Female,Gold,2022-06-23
+CUST175,Customer_175,Consumer,18-25,Male,Silver,2022-05-03
+CUST176,Customer_176,Home Office,41-60,Female,Bronze,2019-05-16
+CUST177,Customer_177,Corporate,60+,Male,Bronze,2019-10-19
+CUST178,Customer_178,Consumer,18-25,Male,Silver,2018-08-04
+CUST179,Customer_179,Consumer,26-40,Female,Silver,2019-04-20
+CUST180,Customer_180,Corporate,18-25,Female,Gold,2020-09-01
+CUST181,Customer_181,Home Office,41-60,Male,Silver,2021-04-24
+CUST182,Customer_182,Corporate,41-60,Female,Gold,2021-07-28
+CUST183,Customer_183,Corporate,41-60,Male,Silver,2020-08-09
+CUST184,Customer_184,Consumer,26-40,Male,Bronze,2023-01-16
+CUST185,Customer_185,Corporate,41-60,Female,Bronze,2023-07-08
+CUST186,Customer_186,Consumer,41-60,Male,Bronze,2023-08-23
+CUST187,Customer_187,Corporate,60+,Male,Silver,2019-02-14
+CUST188,Customer_188,Consumer,26-40,Female,Gold,2023-11-16
+CUST189,Customer_189,Corporate,18-25,Male,Gold,2023-12-28
+CUST190,Customer_190,Corporate,60+,Female,Silver,2021-10-02
+CUST191,Customer_191,Corporate,26-40,Male,Bronze,2022-11-24
+CUST192,Customer_192,Corporate,60+,Female,Gold,2020-05-23
+CUST193,Customer_193,Consumer,26-40,Male,Gold,2022-09-08
+CUST194,Customer_194,Home Office,60+,Female,Bronze,2022-01-25
+CUST195,Customer_195,Corporate,41-60,Female,Silver,2020-09-18
+CUST196,Customer_196,Consumer,41-60,Female,Silver,2020-04-27
+CUST197,Customer_197,Consumer,18-25,Female,Bronze,2020-04-04
+CUST198,Customer_198,Home Office,41-60,Female,Bronze,2023-09-13
+CUST199,Customer_199,Corporate,18-25,Female,Silver,2019-05-07
+CUST200,Customer_200,Consumer,18-25,Female,Silver,2019-02-09
+CUST201,Customer_201,Home Office,18-25,Male,Bronze,2019-08-17
+CUST202,Customer_202,Home Office,41-60,Male,Bronze,2023-10-29
+CUST203,Customer_203,Home Office,60+,Female,Silver,2023-04-08
+CUST204,Customer_204,Consumer,41-60,Female,Bronze,2018-06-25
+CUST205,Customer_205,Corporate,18-25,Male,Bronze,2022-01-18
+CUST206,Customer_206,Corporate,18-25,Male,Silver,2019-03-03
+CUST207,Customer_207,Corporate,60+,Female,Silver,2021-11-29
+CUST208,Customer_208,Corporate,18-25,Female,Gold,2021-04-26
+CUST209,Customer_209,Home Office,26-40,Male,Gold,2020-08-08
+CUST210,Customer_210,Consumer,41-60,Female,Silver,2023-06-21
+CUST211,Customer_211,Consumer,26-40,Female,Gold,2022-11-10
+CUST212,Customer_212,Home Office,41-60,Female,Bronze,2023-01-18
+CUST213,Customer_213,Consumer,18-25,Male,Gold,2020-08-27
+CUST214,Customer_214,Corporate,26-40,Male,Bronze,2019-12-24
+CUST215,Customer_215,Consumer,60+,Male,Gold,2022-07-15
+CUST216,Customer_216,Home Office,26-40,Female,Silver,2023-07-30
+CUST217,Customer_217,Consumer,26-40,Male,Silver,2018-04-27
+CUST218,Customer_218,Home Office,26-40,Female,Gold,2018-01-28
+CUST219,Customer_219,Home Office,26-40,Female,Bronze,2020-08-07
+CUST220,Customer_220,Consumer,41-60,Female,Bronze,2018-10-07
+CUST221,Customer_221,Corporate,41-60,Male,Gold,2019-03-07
+CUST222,Customer_222,Consumer,18-25,Female,Bronze,2018-10-23
+CUST223,Customer_223,Consumer,26-40,Male,Bronze,2020-12-26
+CUST224,Customer_224,Consumer,18-25,Male,Gold,2019-09-11
+CUST225,Customer_225,Corporate,41-60,Male,Gold,2023-06-02
+CUST226,Customer_226,Home Office,60+,Female,Silver,2021-11-30
+CUST227,Customer_227,Corporate,41-60,Female,Silver,2018-08-28
+CUST228,Customer_228,Consumer,26-40,Male,Bronze,2022-04-03
+CUST229,Customer_229,Consumer,26-40,Female,Gold,2020-04-23
+CUST230,Customer_230,Consumer,41-60,Male,Silver,2022-03-19
+CUST231,Customer_231,Corporate,18-25,Male,Gold,2023-11-02
+CUST232,Customer_232,Home Office,18-25,Female,Silver,2019-01-07
+CUST233,Customer_233,Consumer,26-40,Male,Bronze,2023-10-05
+CUST234,Customer_234,Consumer,60+,Male,Silver,2023-08-18
+CUST235,Customer_235,Home Office,18-25,Male,Gold,2023-06-06
+CUST236,Customer_236,Home Office,26-40,Female,Silver,2018-06-09
+CUST237,Customer_237,Home Office,26-40,Male,Silver,2020-04-27
+CUST238,Customer_238,Home Office,18-25,Male,Silver,2020-07-31
+CUST239,Customer_239,Corporate,18-25,Female,Bronze,2023-02-23
+CUST240,Customer_240,Home Office,18-25,Male,Bronze,2021-05-07
+CUST241,Customer_241,Consumer,41-60,Female,Silver,2023-02-05
+CUST242,Customer_242,Home Office,60+,Female,Silver,2023-11-11
+CUST243,Customer_243,Consumer,41-60,Female,Silver,2018-12-21
+CUST244,Customer_244,Consumer,18-25,Male,Bronze,2019-12-29
+CUST245,Customer_245,Consumer,60+,Female,Silver,2023-10-24
+CUST246,Customer_246,Consumer,41-60,Male,Bronze,2019-09-22
+CUST247,Customer_247,Corporate,18-25,Male,Bronze,2021-03-12
+CUST248,Customer_248,Home Office,41-60,Male,Silver,2018-08-04
+CUST249,Customer_249,Home Office,18-25,Female,Gold,2020-10-22
+CUST250,Customer_250,Corporate,18-25,Male,Silver,2023-06-28
+CUST251,Customer_251,Corporate,18-25,Female,Gold,2019-12-17
+CUST252,Customer_252,Consumer,26-40,Female,Gold,2022-08-10
+CUST253,Customer_253,Home Office,60+,Male,Bronze,2023-10-12
+CUST254,Customer_254,Home Office,18-25,Male,Gold,2020-04-13
+CUST255,Customer_255,Home Office,41-60,Female,Silver,2021-08-11
+CUST256,Customer_256,Consumer,41-60,Male,Bronze,2021-04-18
+CUST257,Customer_257,Home Office,18-25,Female,Gold,2021-02-08
+CUST258,Customer_258,Home Office,41-60,Female,Gold,2021-10-06
+CUST259,Customer_259,Corporate,41-60,Male,Silver,2022-02-14
+CUST260,Customer_260,Consumer,60+,Male,Bronze,2018-11-05
+CUST261,Customer_261,Consumer,26-40,Female,Bronze,2023-09-24
+CUST262,Customer_262,Consumer,18-25,Male,Silver,2019-06-13
+CUST263,Customer_263,Consumer,60+,Male,Silver,2021-06-29
+CUST264,Customer_264,Home Office,18-25,Female,Silver,2023-06-26
+CUST265,Customer_265,Corporate,18-25,Female,Bronze,2023-07-14
+CUST266,Customer_266,Corporate,60+,Female,Gold,2019-06-07
+CUST267,Customer_267,Consumer,18-25,Female,Silver,2023-11-22
+CUST268,Customer_268,Home Office,60+,Female,Gold,2018-11-12
+CUST269,Customer_269,Home Office,60+,Female,Silver,2019-07-22
+CUST270,Customer_270,Corporate,60+,Female,Gold,2018-10-26
+CUST271,Customer_271,Home Office,18-25,Female,Bronze,2018-03-30
+CUST272,Customer_272,Corporate,18-25,Male,Gold,2018-10-02
+CUST273,Customer_273,Home Office,41-60,Female,Bronze,2019-03-10
+CUST274,Customer_274,Corporate,60+,Female,Silver,2018-07-31
+CUST275,Customer_275,Home Office,26-40,Male,Silver,2022-04-03
+CUST276,Customer_276,Consumer,60+,Female,Bronze,2018-05-16
+CUST277,Customer_277,Consumer,26-40,Female,Bronze,2020-06-11
+CUST278,Customer_278,Home Office,26-40,Female,Gold,2022-02-20
+CUST279,Customer_279,Home Office,18-25,Male,Gold,2020-12-15
+CUST280,Customer_280,Consumer,60+,Male,Gold,2021-02-28
+CUST281,Customer_281,Corporate,18-25,Male,Gold,2023-12-21
+CUST282,Customer_282,Home Office,60+,Male,Bronze,2018-10-14
+CUST283,Customer_283,Consumer,41-60,Male,Bronze,2023-10-02
+CUST284,Customer_284,Home Office,41-60,Male,Bronze,2020-09-07
+CUST285,Customer_285,Consumer,41-60,Male,Bronze,2021-10-10
+CUST286,Customer_286,Corporate,41-60,Female,Gold,2021-04-26
+CUST287,Customer_287,Consumer,41-60,Male,Bronze,2020-01-25
+CUST288,Customer_288,Consumer,41-60,Female,Bronze,2020-01-11
+CUST289,Customer_289,Home Office,41-60,Male,Gold,2023-01-17
+CUST290,Customer_290,Consumer,41-60,Male,Silver,2021-08-24
+CUST291,Customer_291,Home Office,18-25,Female,Bronze,2020-10-26
+CUST292,Customer_292,Corporate,41-60,Female,Bronze,2021-08-06
+CUST293,Customer_293,Home Office,26-40,Male,Bronze,2023-12-17
+CUST294,Customer_294,Consumer,41-60,Male,Gold,2022-04-17
+CUST295,Customer_295,Consumer,26-40,Male,Silver,2023-05-10
+CUST296,Customer_296,Consumer,41-60,Male,Bronze,2022-04-24
+CUST297,Customer_297,Consumer,41-60,Male,Silver,2022-12-05
+CUST298,Customer_298,Home Office,60+,Male,Silver,2023-06-06
+CUST299,Customer_299,Home Office,26-40,Male,Silver,2023-12-01
+CUST300,Customer_300,Consumer,18-25,Male,Bronze,2020-08-10

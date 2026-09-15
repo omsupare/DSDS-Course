@@ -1589,6 +1589,17 @@ SELECT NOW();
 
 SELECT ROUND(678.90,-1);
 
+CREATE TABLE New_table AS SELECT * FROM CustomerS1 WHERE 1=0;
+
+
+
+-- Q.1 Find the total order amount per customer.    --> koi differet database use kia hai
+-- Q.2 Display countries having more than 1 customer. 
+-- Q.3 Find the Customers who have both orders and shipping records.
+-- Q.4 Find Customers whose age is greater than the average age. (Using Subquery) 
+-- Q.5 List customers who have pending shipments. (Using Subquery)
+-- Q.6 Show the percentage contribution of each item to total sales.
+-- Q.7 Increase all order amounts by 100
 
  
  
