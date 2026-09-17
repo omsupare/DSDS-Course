@@ -290,3 +290,110 @@ WHERE Balance > 50000 OR AccountType = 'Savings';
 SELECT firstName,lastName,AccountCreationDate
 FROM Customers1
 WHERE AccountCreationDate > '2026-07-01';
+
+-- Multiple customers data using phone numbers and in operator 
+SELECT * FROM Customers1;
+SELECT * FROM Accounts1;
+SELECT * FROM Transactions1;
+SELECT * FROM Loans1;
+SELECT * FROM Branches1;
+
+SELECT *
+FROM Customers1
+WHERE Phone IN ('8838938284','7929267534','7843017486');
+
+-- IN ke alawa aur kis tarike se kar sakte hai 
+SELECT *
+FROM Customers1
+WHERE Phone = '8838938284' OR Phone = '7929267534' OR Phone = '7843017486';
+
+-- Between Operator : Print details of accounts in 20000 TO 50000.
+SELECT * FROM Accounts1;
+SELECT *
+FROM Accounts1
+WHERE Balance BETWEEN 20000 AND 50000;
+
+-- Do the same above question using relational operators :
+SELECT *
+FROM Accounts1
+WHERE Balance >= 20000 AND Balance <= 50000; 
+
+-- LIKE OPERATOR used for pattern matching, % matches number of characters and even zero character
+-- _ matches only one character
+
+SELECT * FROM Customers1;
+
+-- Q.1 Find the customers whose names starts with P.
+SELECT FirstName
+FROM Customers1
+WHERE FirstName LIKE 'P%'; 
+
+-- Q.2 Find the customers whose names starts with N.
+SELECT FirstName
+FROM Customers1
+WHERE FirstName LIKE 'N%';
+
+-- Find all the customers whose last name ends with a.
+SELECT FirstName,LastName
+FROM Customers1
+WHERE LastName LIKE '%a';
+
+-- Find the customers whose last name has exactly three characters : yeh question badhiya tha
+SELECT FirstName,LastName
+FROM Customers1
+WHERE LastName LIKE '___';
+ 
+-- Order By Clause :
+-- sort the accounts according to customer balance :
+SELECT AccountID,Balance 
+FROM Accounts1
+ORDER BY Balance DESC;
+
+-- sort the branches table according to branchName.
+SELECT *
+FROM Branches1 
+ORDER BY BranchName; 
+
+-- Sort the accounts table according to customer balance from highest to lowest :
+SELECT *
+FROM Accounts1
+ORDER BY Balance DESC;  
+
+-- Sorting according to multiple columns :
+-- Q.1 Sort the accounts table according to AccountType and Balance
+SELECT AccountType,Balance
+FROM Accounts1
+ORDER BY AccountType,Balance DESC; 
+
+-- LIMIT and OFFSET Pagination : Distinct 
+-- Different types of Accounts :
+
+SELECT DISTINCT AccountType
+FROM Accounts1;
+
+SELECT * 
+FROM Transactions1;
+
+SELECT DISTINCT TransactionType,AccountID
+FROM Transactions1;
+
+SELECT *
+FROM transactions1
+LIMIT 2;
+
+-- Offset skip karta hai rows it always works with limit.
+SELECT *
+FROM Customers1
+LIMIT 2 OFFSET 2;
+
+-- Skip the first 2 customers from accounts when its in decreasing order.
+SELECT * FROM Accounts1;
+
+SELECT *
+FROM Accounts1
+ORDER BY Balance DESC;
+
+SELECT CustomerID,Balance
+FROM accounts1
+ORDER BY Balance DESC
+LIMIT 2 OFFSET 2; 
