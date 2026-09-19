@@ -532,7 +532,7 @@ SELECT char_length("ナーグプル");   -- gives o/p in no. of characters
 SELECT customerID,CONCAT(FirstName," ",LastName) AS FullName,phone FROM Customers;
 
 -- substring 
-SELECT SUBSTRING('Quadratically',5);
+SELECT SUBSTRING('Quadratically',6);
 
 SELECT CustomerID, concat(substring(FirstName,1,1),".",LastName) AS FullName,phone
 FROM Customers;
@@ -678,8 +678,9 @@ GROUP BY(AccountType);
 
 SELECT * FROM BRANCHES;
 
--- Multiple Group By conditions 
+-- Multiple Group By conditions h branch
 SELECT * FROM Accounts;
+-- Number of Accounts on each branch
 SELECT branchID,AccountType,COUNT(AccountType) AS NoOfAccounts
 FROM Accounts
 GROUP BY branchID,accountType

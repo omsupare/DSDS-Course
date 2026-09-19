@@ -397,3 +397,255 @@ SELECT CustomerID,Balance
 FROM accounts1
 ORDER BY Balance DESC
 LIMIT 2 OFFSET 2; 
+
+-- OR isi ko likhne ka ek aur tarika.
+
+SELECT CustomerID,Balance
+FROM Accounts1
+ORDER BY Balance DESC
+LIMIT 2,2; 
+
+SELECT * FROM Customers1;
+
+INSERT INTO Customers1
+(CustomerID,FirstName,LastName,Email,Phone,AccountCreationDate,DateOfBirth)
+VALUES
+(106,'Priya','Patil','priya@gmail.com',NULL,'2026-08-01','2020-08-03'),
+(107,'Amit','Verma','amit@gmail.com','7865433562','2026-08-03','2020-07-02'),
+(108,'Sneha','Kulkarni','sneha@gmail.com',NULL,'2026-05-01','2020-10-03'),
+(109,'Abhijeet','Sirsat','abhi@gmail.com',NULL,'2026-08-01','2020-08-03');
+
+SELECT * 
+FROM Customers1
+WHERE Phone IS NULL;
+
+SELECT *
+FROM Customers1
+WHERE Phone IS NOT NULL;
+
+SELECT *
+FROM Accounts1;
+
+INSERT INTO Accounts1
+(AccountID,AccountType,Balance,CustomerID,BranchID)
+VALUES
+(206,'Current',70000,106,201),
+(207,'Savings',55000,107,203),
+(208,'Current',25000,108,202),
+(209,'Savings',40000,109,203);
+
+SELECT * FROM Transactions1;
+SELECT * FROM Loans1;
+
+INSERT INTO Transactions1
+(TransactionID,TransactionDate,Amount,TransactionType,AccountID)
+VALUES
+(1006,'2025-09-21',12000,'Deposit',206),
+(1007,'2025-03-4',35000,'Withdrawal',207),
+(1008,'2026-02-22',32000,'Deposit',208),
+(1009,'2025-09-2',3000,'Withdrawal',209);
+
+USE BankingDB1;
+
+-- Case Statement :
+SELECT CustomerID,Balance,
+CASE 
+	WHEN Balance >= 50000 THEN "High Value"
+    ELSE "Low Value"
+END AS Category 
+FROM Accounts1;
+
+-- Categorize the deposits in the transactions table as per conditions given :
+-- if above 10000(included) High amount
+-- if 5000(included) to 10000 Medium amount
+-- if upto 500 Low Amount
+-- For transaction type Withdrawal "Not Applicable"
+
+SELECT * FROM Transactions1;
+
+SELECT TransactionID,Amount,TransactionType,
+CASE 
+	WHEN Amount >= 15000 THEN "High Amount"
+    WHEN Amount BETWEEN 10000 AND 15000 THEN "Medium Amount"
+    WHEN Amount >= 5000 THEN "Low Amount"
+    ELSE "Not Applicable"
+END AS TransactionCategory
+FROM Transactions1;
+
+SELECT Amount
+FROM Transactions1
+WHERE Amount BETWEEN 16000 AND 20000;
+
+-- Functions
+-- Upper Function
+SELECT UPPER(FirstName),UPPER(LastName)
+FROM Customers1;
+
+-- Lower Function
+SELECT LOWER(FirstName),LOWER(LastName)
+FROM Customers1;  
+
+-- Length and char_length :
+-- it counts the length of words because 1 character is equal to 1byte in english.
+
+SELECT LastName,LENGTH(LastName)
+FROM Customers1;  
+
+-- ex:2
+-- measures the string length in bytes, not the number of characters.
+SELECT LENGTH("Nagpur") AS Characters;  -- gives output in number of bytes
+SELECT LENGTH("नागपुर") AS Characters;  -- gives output in bytes
+SELECT LENGTH("ナーグプル") AS Characters; -- gives output in bytes
+ 
+SELECT CHAR_LENGTH("Nagpur") AS Characters; -- gives output in number of characters
+SELECT CHAR_LENGTH("नागपुर") AS Characters; -- gives output in number of charcaters `
+SELECT CHAR_LENGTH("ナーグプル") AS Characters;
+
+-- concat function :
+SELECT CustomerID,CONCAT(FirstName," ",LastName) AS FullName
+FROM Customers1; 
+
+-- substring :
+SELECT SUBSTRING("Quadratically",5); 
+
+SELECT SUBSTRING('Sakila',-3);
+
+-- print from firstName first letter and fullstop and a surname :
+SELECT CONCAT(SUBSTRING(FirstName,1,1),".",LastName) AS FullName
+FROM Customers1; 
+
+SELECT SUBSTRING("Sakila",-5,3);
+
+-- Trim Function :  trailing means last space after the character
+SELECT LENGTH("   Hello World   "); 
+SELECT LENGTH(TRIM("   Hello World   "));
+
+-- Replace Function :
+SELECT replace("Mat mat","M","C");
+
+-- Built in functions :
+-- 1. Round
+SELECT AccountType,ROUND(AVG(Balance),2)
+FROM Accounts1  
+-- WHERE AccountType = 'Savings'
+GROUP BY AccountType
+HAVING AccountType = 'Savings';
+
+-- 2. Ceil or ceiling always gives output in higher side:
+SELECT CEIL(ROUND(AVG(Balance),2))
+FROM Accounts1
+WHERE AccountType = 'Savings'; 
+
+-- CEIL OR CEILING always gives output in higher side : Maximum integer value dega hamesha 
+SELECT CEIL(6.76);
+SELECT CEIL(6.34);
+SELECT CEIL(-6.76);
+
+-- Floor : Smallest value dega 
+SELECT FLOOR(6.76); 
+SELECT FLOOR(6.34);
+SELECT FLOOR(-6.34);
+
+SELECT FLOOR(AVG(Balance))
+FROM Accounts1
+WHERE AccountType = "Savings";
+
+-- Withdrawal and AVG amount from transactions:
+SELECT * FROM Transactions1;
+
+SELECT AVG(Amount) 
+FROM Transactions1
+WHERE TransactionType = "Withdrawal";
+
+-- Floor :
+-- Use Floor upto 2 decimal places
+SELECT FLOOR(AVG(Amount))
+FROM Transactions1
+WHERE TransactionType = "Withdrawal"; 
+
+-- MOD values :
+SELECT (7/3);
+SELECT MOD(7,3);  
+
+-- Power :
+SELECT POWER(2,3);
+SELECT POWER(1.5,3);
+
+-- SQRT
+SELECT sqrt(16);
+
+-- Date and Time Functions :
+SELECT NOW();
+SELECT Current_date(); 
+SELECT Current_time();
+
+-- year,month,day :
+SELECT CustomerID, YEAR(DATEOFBIRTH), MONTH(DATEOFBIRTH), DAY(DATEOFBIRTH)
+FROM Customers1;
+
+-- datediff to find the difference between 2 dates :
+ 
+-- Display FullName and age in years from customers :
+SELECT CONCAT(FirstName," ",LastName) AS FullName, FLOOR(DATEDIFF(current_date(),DATEOFBIRTH)/365) AS Age
+FROM Customers1; 
+
+-- date_add() -- expiry date findout krne ke liye karte hai
+SELECT CONCAT(FirstName," ",LastName) AS FullName,
+AccountCreationDate,
+DATE_ADD(AccountCreationDate,INTERVAL 1 YEAR) AS KYCRenewal
+FROM Customers1; 
+
+-- Aggregate Functions :
+-- 1. Count()
+SELECT * FROM Customers1;
+
+SELECT COUNT(Phone)
+FROM Customers1;
+
+SELECT COUNT(*)
+FROM Customers1;
+
+-- 2. Sum Function 
+SELECT SUM(Balance) AS TotalBalance
+FROM Accounts1; 
+
+SELECT SUM(Balance) AS TotalSavBal
+FROM Accounts1
+WHERE AccountType = 'Savings';
+
+-- MAX and MIN Functions :
+SELECT MAX(Balance)
+FROM Accounts1
+WHERE AccountType = 'Current';
+
+-- MIN Balance :
+SELECT MIN(Balance)
+FROM Accounts1
+WHERE AccountType = 'Savings';
+
+-- Group By Clause 
+SELECT TransactionType,SUM(Amount)
+FROM Transactions1
+GROUP BY TransactionType;
+
+-- Print the group according to AccountType on Sum of Balance and Average Balance and also specify
+-- count on single group by condition :
+
+SELECT AccountType,SUM(Balance) AS TotalBal,
+AVG(Balance) AS AvgBal,
+COUNT(*) AS NumOfAcc
+FROM accounts1
+GROUP BY AccountType;
+
+-- Multiple GroupBy Conditions :
+SELECT * FROM Accounts1;
+
+-- Number of Accounts in Each Branch
+SELECT BranchID,AccountType,COUNT(*) AS NumOfAcc
+FROM Accounts1
+GROUP BY BranchID,AccountType
+ORDER BY BranchID;
+
+-- Having Group by ke results ko filter kar raha hai 
+ 
+ 
