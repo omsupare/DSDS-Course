@@ -647,5 +647,393 @@ GROUP BY BranchID,AccountType
 ORDER BY BranchID;
 
 -- Having Group by ke results ko filter kar raha hai 
+SELECT BranchID,AccountType,COUNT(*) NumOfAcc
+FROM Accounts1
+GROUP BY BranchID,AccountType
+HAVING NumOfAcc > 2 AND AccountType = "Savings";
+
+-- Find the Number of AccountCreation in specific years.
+SELECT (YEAR(AccountCreationDate)) AS Years,
+COUNT(Year(AccountCreationDate)) AS NumOfAcc
+FROM Customers1
+GROUP BY Years;
+
+-- Joins 
+-- Find all the Customers having loans with their names.
+SELECT * FROM Loans1;
+SELECT * FROM Customers1;
+
+SELECT c.CustomerID,CONCAT(c.FirstName," ",c.LastName) AS FullName,l.LoanAmount
+FROM Customers1 c 
+INNER JOIN Loans1 l
+ON c.CustomerID = l.CustomerID;
+
+-- Find BranchNames for all the Accountids savepoint
+-- include accountid,accountype and branchname,branchaddress
+
+SELECT * FROM Branches1;
+SELECT * FROM Accounts1;
+
+SELECT a.AccountID,a.AccountType,b.BranchName,b.BranchAddress
+FROM Accounts1 a 
+INNER JOIN Branches1 b 
+ON a.branchID = b.branchID
+WHERE AccountType = "Savings"
+ORDER BY AccountID;
+
+-- Find all the customers name,phone,accounttype,balance where account type is savings
+SELECT * FROM Customers1;
+
+SELECT CONCAT(c.FirstName," ",c.LastName) AS FullName,
+c.Phone,a.AccountType,a.Balance
+FROM Customers1 c 
+INNER JOIN Accounts1 a 
+ON c.CustomerID = a.CustomerID
+WHERE a.AccountType = "Savings";
+
+-- Left Join 
+INSERT INTO Customers1(CustomerId,FirstName,LastName,Email,Phone,AccountCreationDate,DateOfBirth)
+VALUES
+	(110,'Vikram','Joshi','vikram@gmail.com',9765439765,'2026-05-12','2003-03-03'),
+    (111,'Ronit','Parmar','ronit@gmail.com',NULL,'2026-04-10','2001-07-01'),
+    (112,'Ayush','Bhel','ayush@gmail.com',8786757657,'2024-01-23','2002-08-29');
+    
+-- Find the all the customers name and its acountType and Balance : 
+SELECT c.CustomerID,CONCAT(c.FirstName," ",c.LastName) AS FullName,
+a.AccountType,a.Balance 
+FROM Customers1 c
+LEFT JOIN Accounts1 a 
+ON c.CustomerID = a.CustomerID;
+
+-- Yeh Sirf common wle dega 
+SELECT c.CustomerID,CONCAT(c.FirstName," ",c.LastName) AS FullName,
+a.AccountType,a.Balance
+FROM Customers1 c 
+JOIN Accounts1 a 
+ON c.CustomerID = a.CustomerID;
+
+-- Right Join Second table will be the preference :
+INSERT INTO Branches1
+VALUES
+(204,'Nashik Branch','College Road,Nashik','464645');
+
+SELECT * FROM Branches1;
+
+SELECT * 
+FROM Accounts1
+ORDER BY AccountID;
+
+INSERT INTO Accounts1(AccountID,AccountType,Balance,CustomerId,BranchId)
+VALUES
+(210,'Savings',56000,111,204),
+(211,'Current',92000,112,202);
+
+SELECT * FROM Transactions1;
+INSERT INTO Transactions1(TransactionId,TransactionDate,Amount,TransactionType,AccountId)
+VALUES
+(1010,'2025-03-10',8000,'Deposit',206),
+(1011,'2025-03-15',1500,'Withdrawal',207),
+(1012,'2025-03-20',12000,'Deposit',208),
+(1013,'2025-04-05',4000,'Withdrawal',209),
+(1014,'2025-04-10',7000,'Deposit',201),
+(1015,'2025-04-15',2500,'Withdrawal',202),
+(1016,'2025-05-01',6000,'Deposit',203),
+(1017,'2025-05-10',2000,'Deposit',204);
+
+INSERT INTO Transactions1(TransactionId,TransactionDate,Amount,TransactionType,AccountId)
+VALUES 
+(1018,'2025-04-19',3000,'Withdrawal',205);
+
+-- Right Join Ka koi aaisa example nhi diya hai sir ne --> itna usefull nhi hai
+SELECT c.customerID,CONCAT(c.FirstName," ",c.LastName) AS FullName,
+a.AccountID,a.AccountType,a.Balance 
+FROM Customers1 c 
+INNER JOIN Accounts1 a 
+ON c.CustomerID = a.CustomerID
+ORDER BY a.AccountID;
+
+SELECT c.customerID,CONCAT(c.FirstName," ",c.LastName) AS FullName,
+a.AccountID,a.AccountType,a.Balance 
+FROM Customers1 c 
+INNER JOIN Accounts1 a 
+ON c.CustomerID = a.CustomerID
+ORDER BY c.CustomerID;
+
+-- Full Outer Join : one upon each other na dete huye ham ise side by side dere hai
+USE BankingDB1;
+
+SELECT *
+FROM Customers1 c 
+LEFT JOIN Accounts1 a
+ON c.CustomerID = a.CustomerID
+UNION
+SELECT *
+FROM Customers1 c 
+RIGHT JOIN Accounts1 a
+ON c.CustomerID = a.CustomerID;
+
+-- Cross Join :
+SELECT *
+FROM Customers1 c 
+CROSS JOIN Accounts1 a;
+
+-- Self Join :
+CREATE TABLE Employees1(
+	  EmployeeID INT PRIMARY KEY,
+      EmployeeName VARCHAR(50) NOT NULL,
+      ManagerID INT,
+      Department VARCHAR(50),
+	  Salary DECIMAL(10,2),
+      JoiningDate DATE,
+      BranchID INT,
+     
+     FOREIGN KEY (ManagerID)
+     REFERENCES Employees1(EmployeeID),
+    
+     FOREIGN KEY (BranchID)
+     REFERENCES Branches1(BranchID)
+ ); 
  
+INSERT INTO Employees1
+    (EmployeeID, EmployeeName, ManagerID, Department, Salary, JoiningDate, BranchID)
+VALUES
+    (1, 'Rajesh Sharma', NULL, 'Management', 120000.00, '2018-04-15', 201),
+    (2, 'Priya Patel', 1, 'Human Resources', 75000.00, '2019-06-10', 202),
+    (3, 'Amit Kumar', 1, 'Finance', 82000.00, '2020-01-20', 203),
+    (4, 'Sneha Verma', 1, 'IT', 95000.00, '2019-09-05', 204),
+    (5, 'Rahul Singh', 1, 'Sales', 78000.00, '2021-03-12', 205),
+    (6, 'Neha Joshi', 2, 'Human Resources', 55000.00, '2021-07-19', 201),
+    (7, 'Vikas Gupta', 2, 'Human Resources', 52000.00, '2022-02-14', 202),
+    (8, 'Pooja Mehta', 3, 'Finance', 60000.00, '2021-11-08', 203),
+    (9, 'Suresh Yadav', 3, 'Finance', 58000.00, '2022-05-16', 204),
+    (10, 'Anjali Deshmukh', 4, 'IT', 72000.00, '2020-08-24', 205),
+    (11, 'Rohan Kulkarni', 4, 'IT', 68000.00, '2021-10-11', 201),
+    (12, 'Kavita Rao', 4, 'IT', 65000.00, '2022-01-17', 202),
+    (13, 'Arjun Malhotra', 5, 'Sales', 57000.00, '2022-06-20', 203),
+    (14, 'Meena Shah', 5, 'Sales', 59000.00, '2021-12-06', 204),
+    (15, 'Deepak Thakur', 5, 'Sales', 54000.00, '2023-01-09', 205),
+    (16, 'Nitin Pawar', 6, 'Human Resources', 42000.00, '2023-04-18', 201),
+    (17, 'Swati Mishra', 7, 'Human Resources', 40000.00, '2023-07-03', 202),
+    (18, 'Manish Jain', 8, 'Finance', 45000.00, '2023-02-27', 203),
+    (19, 'Komal Sinha', 9, 'Finance', 43000.00, '2023-08-14', 204),
+    (20, 'Akash Bansal', 10, 'IT', 50000.00, '2023-05-22', 205);
+    
+USE BankingDB1;
+SELECT * FROM Branches1;
+INSERT INTO Branches1 VALUES (
+	205,'Amravati Branch','College Road',565457
+);
+
+SELECT *
+FROM Employees1;
+
+SELECT e.EmployeeID,e.EmployeeName AS Employee,
+m.EmployeeName AS Manager
+FROM Employees1 e 
+LEFT JOIN Employees1 m
+ON e.ManagerID = m.EmployeeID;
+
+SELECT e.EmployeeID,e.EmployeeName AS Employee,
+m.EmployeeName AS Manager,
+b.BranchName 
+FROM Employees1 e 
+LEFT JOIN Employees1 m 
+ON e.ManagerID = m.EmployeeID
+INNER JOIN Branches1 b 
+ON e.BranchID = b.BranchID;
+
+SELECT e.EmployeeID,e.EmployeeName,m.EmployeeName
+FROM Employees1 e
+LEFT JOIN Employees1 m 
+ON e.ManagerID = m.EmployeeID;
  
+SELECT e.EmployeeID,e.EmployeeName,m.EmployeeName,b.BranchName
+FROM Employees1 e 
+LEFT JOIN Employees1 m 
+ON e.ManagerID = m.EmployeeID
+INNER JOIN Branches1 b 
+ON e.branchID = b.branchID;
+
+-- Find the Employee Names Whose Manager is Sneha Verma 
+SELECT e.EmployeeID,e.EmployeeName,m.EmployeeName
+FROM Employees1 e 
+INNER JOIN Employees1 m 
+ON e.ManagerID = m.EmployeeID
+WHERE m.EmployeeName = 'Sneha Verma';
+
+-- Find the Customer Names whose avg Balance is greater than 'savings' account :
+SELECT AVG(Balance) FROM Accounts1;
+
+-- single entry rehni chahiye isiliye group by krne pr bhi error nhi milla 
+SELECT CONCAT(FirstName," ",LastName) AS FullName,a.AccountType,
+AVG(Balance) AS AvgBal 
+FROM Customers1 c 
+LEFT JOIN Accounts1 a 
+ON c.CustomerID = a.CustomerID
+WHERE AccountType = 'Savings'
+GROUP BY FullName
+HAVING AvgBal > 55454.54;
+
+-- Subquery 
+-- 1.Scalar SubQuery :
+--  find customer names whoes avg balance is greater than savings account using subquery
+
+SELECT FirstName
+FROM Customers1
+WHERE CustomerID IN (
+	SELECT CustomerID FROM Accounts1
+    WHERE AccountType = 'Savings'
+);
+
+SELECT AVG(Balance) FROM Accounts1;
+
+SELECT AccountID,AccountType,Balance
+FROM Accounts1
+WHERE AccountType = 'Savings' AND Balance > (
+	SELECT AVG(Balance)
+    FROM Accounts1
+);
+
+-- Accountids having avg balnace > savings account
+SELECT AccountID,AccountType,Balance 
+FROM Accounts1 
+WHERE AccountType = 'Savings' AND Balance > (
+	SELECT AVG(Balance)
+    FROM Accounts1
+);
+
+-- Find Customers names whose avg balance is greater than savings account using subquery.
+SELECT c.CustomerID,c.FirstName
+FROM Customers1 c 
+INNER JOIN Accounts1 a 
+ON c.CustomerID = a.CustomerID
+WHERE a.AccountType = 'Savings' AND a.Balance > (
+	SELECT AVG(Balance)
+    FROM Accounts1
+);
+
+-- Find the Accounts having highest balance :
+SELECT MAX(Balance)
+FROM Accounts1;
+
+SELECT AccountID,CustomerID,Balance
+FROM Accounts1 
+WHERE Balance = (
+	SELECT MAX(Balance)
+	FROM Accounts1
+);
+
+-- Find customers whose year of birth is earlier than the average year of birth of all customers 
+SELECT FLOOR(AVG(YEAR(DateOfBirth))) AS AvgYearBirth 
+FROM customers1;
+
+SELECT FirstName,YEAR(DateOfBirth) AS Years
+FROM Customers1
+WHERE YEAR(DateOfBirth) < (
+	SELECT FLOOR(AVG(YEAR(DateOfBirth))) AS AvgYearBirth 
+	FROM customers1
+);
+
+-- Multi Row SubQuery :
+-- Find the Customers who have taken atleast one loan.
+SELECT * FROM Loans1;  
+SELECT * FROM Customers1;
+
+SELECT CustomerID,FirstName
+FROM customers1 
+WHERE CustomerID IN (
+	SELECT CustomerID FROM Loans1
+);
+
+-- joins use karke Loan nikalna :
+SELECT l.customerID,CONCAT(c.FirstName," ",c.LastName) AS FullName,l.LoanAmount
+FROM Customers1 c 
+INNER JOIN Loans1 l 
+ON c.CustomerID = l.CustomerID
+ORDER BY l.CustomerID;
+
+-- Find the customers who have not taken any loan.
+SELECT CustomerID,FirstName
+FROM Customers1 
+WHERE CustomerID NOT IN (
+	SELECT CustomerID FROM Loans1
+    ORDER BY CustomerID
+);
+
+-- 3. Find the Customers who have atleast one savings account.
+SELECT * FROM Customers1;
+SELECT * FROM Accounts1;
+
+SELECT CustomerID,FirstName
+FROM Customers1 
+WHERE CustomerID IN (
+	SELECT CustomerID FROM Accounts1
+    WHERE AccountType = 'Savings'
+);
+
+-- Find all Customers who have an account in BranchID = 201.
+SELECT * FROM Accounts1;
+SELECT * FROM Branches1;
+
+SELECT CustomerID,AccountType
+FROM Accounts1
+WHERE BranchID IN (
+	SELECT BranchID FROM Branches1
+    WHERE BranchID = '201'
+);
+
+-- 5.Find all Accounts whose balance is greater than any Account in BranchID = 201.
+SELECT * FROM Accounts1;
+SELECT * FROM Branches1;
+
+SELECT AccountID,Balance
+FROM Accounts1
+WHERE Balance > ALL (
+	SELECT Balance
+    FROM Accounts1 
+    WHERE BranchID = '201'
+);
+
+-- Find the branch with highest account balance.
+SELECT * FROM Accounts1;
+SELECT * FROM Branches1; 
+
+SELECT BranchID,BranchName,BranchAddress
+FROM Branches1
+WHERE BranchID IN (
+	SELECT MAX(Balance)
+    FROM Accounts1
+);
+
+SELECT BranchID,MAX(Balance)
+FROM Accounts1
+GROUP BY BranchID;
+
+-- Correlated SubQuery :
+-- Find Accounts whose Balance is greater than the Average Balance of their respective Branch.
+
+SELECT * FROM Accounts1;
+SELECT * FROM Branches1;  
+
+SELECT BranchID,AVG(Balance)
+FROM Accounts1
+GROUP BY BranchID;
+
+-- 1. Find accounts whose Balance is greater than the average Balance of their respective Branch. 
+SELECT a1.AccountID,a1.Balance,a1.BranchID
+FROM Accounts1 a1 
+WHERE Balance > (
+	SELECT AVG(a2.Balance)
+    FROM Accounts1 a2
+    WHERE a2.BranchID = a1.BranchID
+);
+
+-- 1. Find accounts whose Balance is greater than the average Balance of their respective Branch.
+SELECT a1.AccountID,a1.Balance,a1.BranchID
+FROM Accounts1 a1
+WHERE Balance > (
+	SELECT AVG(a2.Balance)
+    FROM Accounts1 a2
+    WHERE a2.BranchID = a1.BranchID
+);
+

@@ -716,7 +716,7 @@ INNER JOIN loans l
 ON
 c.CustomerID = l.CustomerID;
 
--- Find BranchNames for all the Accountids savepoint
+-- Find BranchNames for all the Accountids and AccountType is Savings
 -- include accountid,accountype and branchname,branchaddress
 
 SELECT * FROM Branches;
@@ -833,7 +833,7 @@ ORDER BY CustomerId;
 
 -- Full Outer Join (UNION)  not that much use
 -- Joining Customers and accounts
-
+USE BankingDB;
 SELECT * FROM Customers c 
 LEFT JOIN Accounts a 
 ON c.CustomerId = a.AccountId 
