@@ -1019,7 +1019,7 @@ SELECT BranchID,AVG(Balance)
 FROM Accounts1
 GROUP BY BranchID;
 
--- 1. Find accounts whose Balance is greater than the average Balance of their respective Branch. 
+-- 1.1 Find accounts whose Balance is greater than the average Balance of their respective Branch. 
 SELECT a1.AccountID,a1.Balance,a1.BranchID
 FROM Accounts1 a1 
 WHERE Balance > (
@@ -1028,7 +1028,7 @@ WHERE Balance > (
     WHERE a2.BranchID = a1.BranchID
 );
 
--- 1. Find accounts whose Balance is greater than the average Balance of their respective Branch.
+-- 1.2 Find accounts whose Balance is greater than the average Balance of their respective Branch.
 SELECT a1.AccountID,a1.Balance,a1.BranchID
 FROM Accounts1 a1
 WHERE Balance > (
@@ -1037,3 +1037,224 @@ WHERE Balance > (
     WHERE a2.BranchID = a1.BranchID
 );
 
+-- 1.3 Find Accounts whose Balance is greater than the average balance of their respective Branch.
+SELECT a1.AccountID,a1.Balance,a1.BranchID
+FROM Accounts1 a1 
+WHERE a1.Balance > (
+	SELECT AVG(a2.Balance)
+    FROM Accounts1 a2
+    WHERE a1.BranchID = a2.BranchID
+);
+
+-- 2.1 Find employees whose salary is greater then the average salary of their respective department.
+-- subquery ke questions kuch usi way se solve hote hai koi aur tarika nhi hai 
+SELECT * FROM Employees1; 
+
+SELECT Department,AVG(Salary)
+FROM Employees1 
+GROUP BY Department;
+
+SELECT EmployeeID,EmployeeName
+FROM Employees1 
+WHERE Salary > (
+		SELECT Department,AVG(Salary)
+		FROM Employees1 
+		GROUP BY Department
+);
+
+SELECT e1.EmployeeID,e1.EmployeeName,e1.salary
+FROM Employees1 e1 
+WHERE e1.Salary > (
+	SELECT AVG(Salary)
+    FROM Employees1 e2
+    WHERE e1.Department = e2.Department
+);
+
+-- 2.2 
+SELECT e1.EmployeeID,e1.EmployeeName,e1.Salary
+FROM Employees1 e1 
+WHERE e1.Salary > (
+	SELECT AVG(e2.Salary)
+    FROM Employees1 e2
+    WHERE e1.Department = e2.Department
+); 
+
+-- 2.3 Find Employees whose Salary is greater then avg salary of their respective department
+SELECT e1.EmployeeID,e1.EmployeeName,e1.Salary
+FROM Employees1 e1 
+WHERE e1.Salary > (
+	SELECT AVG(e2.Salary)
+    FROM Employees1 e2 
+    WHERE e1.Department = e2.Department
+); 
+
+-- Find the Customers who have more then one Account.
+SELECT * FROM Accounts1
+ORDER BY CustomerID; 
+
+SELECT * FROM Accounts
+ORDER BY CustomerID;
+
+-- 3.1 Find the Customers who have more then one Account.
+SELECT CustomerID,FirstName,LastName
+FROM Customers c 
+WHERE (
+	SELECT COUNT(AccountID)
+    FROM Accounts a 
+    WHERE c.CustomerID = a.CustomerID
+) > 1;
+
+-- 3.2 Find the Customers who have more then one Account.
+SELECT CustomerID,FirstName,LastName
+FROM Customers c 
+WHERE (
+	SELECT COUNT(*)
+    FROM Accounts a 
+    WHERE c.CustomerID = a.CustomerID
+) > 1; 
+
+-- 3.3 Find the Customers who have more then one Account.
+SELECT CustomerID,FirstName,LastName
+FROM Customers c 
+WHERE (
+	SELECT COUNT(*)
+    FROM Accounts a
+    WHERE c.CustomerID = a.CustomerID
+)> 1; 
+
+-- Table SubQuery :
+-- It returns multiple rows and columns functioning as temporary table
+
+-- 1.Find the avg account balance for each account type using derived table.
+SELECT Accounts_Data.AccountType,Accounts_Data.AvgBal
+FROM (
+	SELECT AccountType,AVG(Balance) AS AvgBal
+    FROM Accounts
+    GROUP BY AccountType
+) AS Accounts_Data;
+
+SELECT AccountType,AVG(Balance) AS AvgBal
+    FROM Accounts
+    GROUP BY AccountType;
+
+-- 1.2    
+SELECT Accounts_Data.AccountType,Accounts_Data.AvgBal
+FROM (
+	SELECT AccountType,AVG(Balance) AS AvgBal
+    FROM Accounts1
+    GROUP BY AccountType
+) AS Accounts_Data;
+ 
+-- 1.3 
+SELECT Accounts_Data.AccountType,Accounts_Data.AvgBal
+FROM (
+	SELECT AccountType,AVG(Balance) AS AvgBal
+    FROM Accounts1
+	GROUP BY AccountType
+) AS Accounts_Data; 
+
+-- 2.1 Display only those account types whose average balance is greater than 50000.
+SELECT * FROM Accounts1;
+SELECT AccountType,AVG(Balance) AS AvgBal
+FROM Accounts1
+GROUP BY AccountType
+HAVING AvgBal > 55000;
+
+-- Hame Tarike pata hone chahiye
+SELECT Accounts_Data.AccountType,Accounts_Data.AvgBal
+FROM (
+		SELECT AccountType,AVG(Balance) AS AvgBal
+		FROM Accounts1
+		GROUP BY AccountType
+) AS Accounts_Data
+WHERE Accounts_Data.AvgBal > 55000; 
+
+-- 2.2 Display only those account types whose average balance is greater then 55000.
+SELECT AccountType,AVG(Balance) AS AvgBal
+FROM Accounts1
+GROUP BY AccountType;
+
+SELECT AccountBalance.AccountType,AccountBalance.AvgBal
+FROM (
+	SELECT AccountType,AVG(Balance) AS AvgBal
+	FROM Accounts1
+	GROUP BY AccountType
+) AccountBalance
+WHERE AvgBal > 55000;
+
+-- 2.3 Display ony those account types whose average balance is greater then 50000.
+SELECT AccountType,AVG(Balance) AS AvgBal
+FROM Accounts1
+GROUP BY AccountType;
+
+SELECT AccountBalance.AccountType,AccountBalance.AvgBal
+FROM (
+	SELECT AccountType,AVG(Balance) AS AvgBal
+	FROM Accounts1
+	GROUP BY AccountType
+) AccountBalance
+WHERE AvgBal > 55000;
+
+-- 3.1 Find Top3 Customers Based on total Account Balance.
+SELECT CustomerID,SUM(Balance) AS TotalBal
+FROM Accounts1
+GROUP BY CustomerID
+ORDER BY TotalBal DESC
+LIMIT 3;
+
+SELECT * FROM Accounts1;
+
+SELECT AccountsData.CustomerID,AccountsData.TotalBal
+FROM (
+	SELECT CustomerID,SUM(Balance) AS TotalBal
+	FROM Accounts1
+	GROUP BY CustomerID
+	ORDER BY TotalBal DESC
+	LIMIT 3
+) AS AccountsData;
+
+-- SubQueries inside update clause :
+-- 1.1Increase the balance of accounts belonging to customers who have taken a loan by 5%.
+
+SELECT * FROM Loans1;
+SELECT * FROM Accounts1;
+
+UPDATE Accounts1 
+SET Balance = Balance + Balance*0.05
+WHERE CustomerID IN (
+	SELECT CustomerID FROM Loans1
+);
+
+-- 1.2 Increase the Balance of accounts belonging to customers who have taken loan by 5%.
+UPDATE Accounts1
+SET Balance = Balance + Balance*0.05
+WHERE CustomerID IN (
+	SELECT CustomerID 
+    FROM Loans1
+);
+
+-- 1.3 Increase the Balance of accounts belonging to customers who have taken loan by 5%.
+UPDATE Accounts1
+SET Balance = Balance + Balance*0.05
+WHERE CustomerID IN (
+	SELECT CustomerID
+    FROM Loans1
+); 
+
+-- SubQueries inside delete clause.
+-- 1.1Delete all the transactions below 2000 where transactionType is withdrawal.
+SELECT * FROM Transactions1
+ORDER BY Amount;
+
+DELETE FROM Transactions1
+WHERE AccountID IN (
+	SELECT AccountID
+    FROM (
+		SELECT Amount
+        FROM transactions1
+        WHERE Amount < 2000 AND TransactionType = 'Withdrawal'
+    ) AS Temporary
+) AND TransactionType = 'Withdrawal';
+
+-- SubQueries using insert :
+-- 1.1 Create HighValue Accounts t 
