@@ -1256,5 +1256,102 @@ WHERE AccountID IN (
     ) AS Temporary
 ) AND TransactionType = 'Withdrawal';
 
+-- SubQueries using delete : nhi ayege aaise question
+-- 1.2 Delete all the transactions below 2000 Where transactiontype is withdrawal :
+
 -- SubQueries using insert :
--- 1.1 Create HighValue Accounts t 
+-- 1. Create a HighValueAccounts table and insert all accounts whose balance is greater than the average account Balance.
+SELECT * FROM Accounts1;
+
+SELECT AVG(Balance)
+FROM Accounts1;
+
+CREATE TABLE HighValueAccounts1 (
+	AccountID INT,
+    CustomerID INT,
+    BranchID INT,
+    AccountType VARCHAR(20),
+    Balance DECIMAL(10,2),
+    FOREIGN KEY (CustomerID)
+    REFERENCES Customers1(CustomerID),
+    FOREIGN KEY (BranchID)
+    REFERENCES Branches1(BranchID)
+);
+
+SELECT * FROM HighValueAccounts1;
+
+INSERT INTO HighValueAccounts1(AccountID,CustomerID,BranchID,AccountType,Balance)
+SELECT AccountID,CustomerID,BranchID,AccountType,Balance
+FROM Accounts1 
+WHERE Balance > (
+	SELECT AVG(Balance)
+	FROM Accounts1
+);
+
+DROP Table HighValueAccounts;
+
+-- Q.2 Create HighBalanceCustomers table and insert customers whose total account balance is greater then 50000.
+
+SELECT * FROM Accounts1;
+
+SELECT AccountID,SUM(Balance) AS TotalBal
+FROM Accounts1
+GROUP BY AccountID
+HAVING TotalBal > 50000;
+
+CREATE TABLE HighBalanceAccounts (
+	CustomerID INT,
+    TotalBalance DECIMAL(10,2)
+);
+
+
+INSERT INTO HighBalanceAccounts (CustomerID,TotalBalance)
+	SELECT CustomerID,SUM(Balance) AS TotalBal
+	FROM Accounts1
+	GROUP BY CustomerID
+	HAVING TotalBal > 50000;
+
+SELECT * FROM HighBalanceAccounts;
+
+-- isse karne ka hi ek aur tarika upper me 
+
+-- SQL Views :
+-- 1.1 Create view for premiumAcounts whose balance is greater then 50000.
+-- unnecessary joins use kia hai 
+CREATE VIEW PremiumAccounts AS 
+SELECT a.AccountID,t.transactionID,a.AccountType,a.Balance,a.CustomerID
+FROM Accounts1 a 
+INNER JOIN Transactions1 t 
+ON a.AccountID = t.AccountID
+WHERE a.Balance > 50000;
+
+SELECT * FROM PremiumAccounts;
+
+-- 1.2
+CREATE OR REPLACE VIEW PremiumAccounts AS 
+SELECT a.AccountID,t.transactionID,a.AccountType,a.Balance,a.CustomerID
+FROM Accounts1 a 
+INNER JOIN Transactions1 t 
+ON a.AccountID = t.AccountID
+WHERE a.Balance > 50000;
+
+-- 1.3
+CREATE VIEW PremiumAccounts AS 
+SELECT a.AccountID,t.transactionID,a.AccountType,a.balance,a.CustomerID
+FROM Accounts1 a 
+INNER JOIN Transactions t 
+ON a.AccountID = t.AccountID
+WHERE a.Balance > 50000;
+
+-- Display Top2 Customers having highest balance .
+CREATE OR REPLACE VIEW PremiumAccounts AS
+SELECT CustomerID,SUM(Balance) AS TotalBal
+FROM Accounts1 
+GROUP BY CustomerID
+ORDER BY TotalBal DESC
+LIMIT 2;
+
+SELECT * FROM PremiumAccounts;
+
+-- DQL : Windows Functions 
+
