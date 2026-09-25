@@ -1354,4 +1354,36 @@ LIMIT 2;
 SELECT * FROM PremiumAccounts;
 
 -- DQL : Windows Functions 
+-- Aggregate functions with over.
+-- 1.Sum,avg,count
+SELECT AccountID,AccountType,Balance,
+AVG(Balance) OVER() AS TotalAvgBal
+FROM Accounts1;
+
+-- 2. Partition By()
+SELECT AccountID,AccountType,Balance,
+AVG(Balance) OVER(Partition BY AccountType) AS TotalAvgBal
+FROM Accounts1;
+
+-- 3. ORDER BY()
+SELECT AccountID,AccountType,Balance,
+AVG(Balance) OVER(PARTITION BY AccountType ORDER BY Balance DESC) AS TotalBal
+FROM Accounts1; 
+
+-- 4. Row Number()
+SELECT AccountID,AccountType,Balance,
+AVG(Balance) OVER(PARTITION BY AccountType ORDER BY Balance DESC) AS TotalAvgBal,
+ROW_NUMBER() OVER() AS SRNum
+FROM Accounts1; 
+
+-- 5. Rank()
+SELECT AccountID,AccountType,Balance,
+RANK() OVER(ORDER BY Balance DESC) AS RankNum
+FROM Accounts;
+
+-- Dense Rank
+SELECT AccountID,AccountType,Balance,
+DENSE_RANK() OVER(ORDER BY AccountID) Ranks
+FROM Accounts1;
+
 

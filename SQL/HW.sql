@@ -1602,39 +1602,6 @@ CREATE TABLE New_table AS SELECT * FROM CustomerS1 WHERE 1=0;
 -- Q.7 Increase all order amounts by 100
 
  
- 
-
- 
-
-
- 
- 
-  
-
- 
-
-
- 
- 
 
 
 
-
-
-
-
-
- 
-  
-
- 
-
-
- 
-
-
- 
- 
-
- 
-  

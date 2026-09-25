@@ -1,0 +1,6 @@
+JobRole_ID,JobRole_Name,Job_Family,Job_Level,Min_Salary,Max_Salary,Target_Bonus_Pct,Career_Track
+1,Manager,Management,4,800000,2000000,0.2,Leadership
+2,Executive,Administrative,2,300000,800000,0.1,Individual Contributor
+3,Analyst,Analytics,3,400000,1200000,0.15,Individual Contributor
+4,Associate,Operations,1,250000,600000,0.08,Entry Level
+5,Lead,Management,4,600000,1800000,0.18,Leadership

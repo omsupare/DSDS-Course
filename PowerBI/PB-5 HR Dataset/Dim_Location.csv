@@ -1,0 +1,6 @@
+Location_ID,Location_Name,Region,Zone,Country,City_Type,Office_Type,Latitude,Longitude
+1,Mumbai,West,Western,India,Metro,Headquarters,19.076,72.8777
+2,Pune,West,Western,India,Tier-2,Branch,18.5204,73.8567
+3,Bangalore,South,Southern,India,Metro,Branch,12.9716,77.5946
+4,Hyderabad,South,Southern,India,Metro,Branch,17.385,78.4867
+5,Delhi,North,Northern,India,Metro,Branch,28.7041,77.1025
