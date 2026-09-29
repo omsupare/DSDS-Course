@@ -1601,7 +1601,101 @@ CREATE TABLE New_table AS SELECT * FROM CustomerS1 WHERE 1=0;
 -- Q.6 Show the percentage contribution of each item to total sales.
 -- Q.7 Increase all order amounts by 100
 
- 
+SELECT LENGTH(TRIM(SUBSTRING('Hello World',1)));
+SELECT REPLACE('Matmat','m','C');
 
+SELECT FLOOR(-13.65);
 
+-- Revision : Case Statement 
+SELECT * FROM Accounts1;
 
+SELECT AccountID,Balance,
+CASE 
+	WHEN Balance >= 50000 THEN 'High Value'
+    ELSE 'Low Value'
+END AS BalanceCategory
+FROM Accounts1;
+
+SELECT LENGTH('Nagpur');
+SELECT CHAR_LENGTH('Nagpur');
+
+SELECT LENGTH('नागपुर');
+SELECT CHAR_LENGTH('नागपुर');
+
+SELECT firstName,AccountCreationDate,
+DATE_ADD(AccountCreationDate, INTERVAL 1 YEAR) AS KYCRenewal
+FROM Customers1;
+
+SELECT * FROM Employees1;
+
+SELECT e.EmployeeID,e.EmployeeName AS Employee,
+m.EmployeeName AS Manager
+FROM Employees1 e 
+LEFT JOIN Employees1 m 
+ON e.ManagerID = m.EmployeeID;
+
+-- acc avgbal > savings acc 
+SELECT * FROM Accounts1;
+
+SELECT AccountID,AccountType,Balance
+FROM Accounts1
+WHERE Balance > (
+	SELECT AVG(Balance) AS AvgBAl
+    FROM Accounts1
+) AND AccountType = 'Savings';
+
+-- Multi-Row SubQuery :
+-- Find Acc who have taken atleast one loan.
+
+SELECT * FROM Accounts1;
+SELECT * FROM Loans1;
+
+SELECT a.AccountID,l.LoanID,l.LoanAmount
+FROM Accounts1 a 
+INNER JOIN Loans1 l 
+ON a.CustomerID = l.CustomerID
+WHERE a.CustomerID IN (
+	SELECT DISTINCT CustomerID FROM Loans1
+);
+-- error na throw karte hue usne de diya  
+SELECT AccountID
+FROM Accounts1
+WHERE CustomerID IN (
+	SELECT CustomerID FROM Loans1
+);
+
+-- Correlated SubQuery 
+-- Find Accounts whose balance is greater than the average balance of their respective Branch
+SELECT * FROM Accounts1;
+SELECT * FROM Branches1;
+
+SELECT a.AccountID,a.Balance,a.BranchID
+FROM Accounts1 a 
+WHERE a.Balance > (
+	SELECT AVG(a2.Balance)
+    FROM Accounts1 a2
+    WHERE a.BranchID = a2.BranchID
+);
+
+-- Table SubQuery :
+-- Find the Avg Acc Bal for each AccountType using derived table
+SELECT * FROM Accounts1;
+
+SELECT AccountData.AccountType,AccountData.AvgBal
+FROM
+	(SELECT AccountType,AVG(Balance) AS AvgBal
+	FROM Accounts1
+	GROUP BY AccountType) AS AccountData;
+    
+UPDATE Accounts1 
+SET Balance = Balance + Balance*0.05
+WHERE CustomerID IN (
+	SELECT CustomerID FROM Loans
+); 
+
+CREATE OR REPLACE VIEW PremiumAccounts AS 
+SELECT a.AccountID,t.transactionID,a.AccountType,a.Balance,a.CustomerID
+FROM Accounts1 a 
+INNER JOIN Transactions1 t 
+ON a.AccountID = t.AccountID
+WHERE a.Balance > 50000;

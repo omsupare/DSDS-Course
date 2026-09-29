@@ -1385,5 +1385,3 @@ FROM Accounts;
 SELECT AccountID,AccountType,Balance,
 DENSE_RANK() OVER(ORDER BY AccountID) Ranks
 FROM Accounts1;
-
-
