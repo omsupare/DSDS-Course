@@ -54,3 +54,33 @@ INSERT INTO Orders(OrderDate,Amount,CustomerID) VALUES
 
 INSERT INTO Orders(OrderDate,Amount,CustomerID) VALUES
 ("2026-10-20",100,3);
+
+SELECT * FROM Orders;
+SELECT * FROM Customers;
+
+INSERT INTO Orders(OrderDate,Amount,CustomerID) VALUES
+('2026-10-28',400,2);
+
+SELECT * FROM Customers;
+SELECT * FROM Orders;
+
+INSERT INTO Orders(OrderDate,Amount,CustomerID) VALUES
+('2026-10-30',200,4);
+
+INSERT INTO Customers(First_Name,Last_Name,Email) VALUES
+("Om","Supare","om@gmail.com"),
+("Abhi","Sirsat","abhi@gmail.com"),
+("Ayush","Berkhede","ayush@gmail.com");
+
+SELECT * FROM Orders;
+SELECT * FROM Customers;
+
+INSERT INTO Orders(Orderdate,Amount,CustomerID)
+VALUES
+("2026-10-30",2000,5),
+("2026-10-31",1000,6),
+("2026-10-30",50000,7);
+
+UPDATE Orders
+SET Amount = 1100
+WHERE ID = 7;
